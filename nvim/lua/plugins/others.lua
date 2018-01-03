@@ -89,7 +89,23 @@ return {
 
   {
     "tpope/vim-rails",
-    ft = "ruby",
+
+    cond = function()
+      if vim.fn.executable("bundle") ~= 1 then
+        return false
+      end
+
+      local exec = require("lazy.manage.process").exec
+
+      local _, code = exec("bundle", { args = { "exec", "rails", "--version" } })
+
+      return code == 0
+    end
+  },
+
+  {
+    "tpope/vim-dispatch",
+    event = "VeryLazy",
   },
 
   {
