@@ -48,7 +48,25 @@ fi
 link_file_in_home "bashrc"
 link_file_in_home "vimrc" 
 link_file_in_home "zshrc"
-link_file_in_home "zshenv"
+link_file_in_home "path"
+
+LINE='source "$HOME/.path"'
+if [[ -e "$HOME/.zshenv" ]]; then
+  if grep -q -x -F "$LINE" "$HOME/.zshenv"; then
+    echo "'path' is already sourced in 'zshenv'."
+  else
+    echo "'path' isn't sourced in 'zshenv'."
+    echo "adding '$LINE' in 'zshenv'."
+    echo "$LINE" >> "$HOME/.zshenv"
+  fi
+else
+  echo "'zshenv' doesn't exist. Creating and adding '$LINE'."
+  {
+    echo '#!/usr/bin/env bash'
+    echo
+    echo "$LINE"
+  } >> "$HOME/.zshenv"
+fi
 
 link_dir_in_XDG_CONFIG "git"
 link_dir_in_XDG_CONFIG "alacritty"

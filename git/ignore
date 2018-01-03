@@ -1,12 +1,6 @@
-drafts/
-.vscode/
-__pycache__/
-*.egg-info/
-
 .*.swp
 .*.swo
-*-session.vim
-*.session
-pseudocode*
-*ideas*
-todo*
+
+Session.vim
+
+.nvim.lua

@@ -1,6 +1,10 @@
+#!/usr/bin/env zsh
+
 # Vars
 export ZSH="$HOME/.zsh"
 export ZSHRC="$HOME/.zshrc"
+
+export EDITOR="nvim"
 
 export DEV_DIR="$HOME/Dev"
 
@@ -8,6 +12,8 @@ export NVIM_DIR="$HOME/.config/nvim"
 export NVIMRC="$NVIM_DIR/init.lua"
 
 export PYTHON_EXECUTABLE=$(which python3)
+
+export DOTNET_CLI_UI_LANGUAGE=en
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
