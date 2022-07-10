@@ -1,0 +1,70 @@
+# Oh My Zsh install directory
+export ZSH="$HOME/.oh-my-zsh"
+
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="sorin"
+ZSH_THEME="spaceship"
+export SPACESHIP_PROMPT_ADD_NEWLINE=false
+export SPACESHIP_PROMPT_SEPARATE_LINE=false
+
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+HIST_STAMPS="dd.mm.yyyy"
+
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+plugins=(
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
+
+source $ZSH/oh-my-zsh.sh
+
+export EDITOR="nvim"
+
+# Vars
+export DEV_DIR="$HOME/Dev"
+
+# Path
+export PYENV_ROOT="$HOME/.pyenv"
+export RBENV_ROOT="$HOME/.rbenv"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=$PATH:/opt/firefox:$HOME/AppImages:$HOME/.local/bin:$RBENV_ROOT/bin:$PYENV_ROOT/bin
+
+export NVIM_DIR="$HOME/.config/nvim"
+export NVIMRC="$NVIM_DIR/init.lua"
+export NVIM_PLUGINS="$NVIM_DIR/lua/plugins.lua"
+
+export VIMRC="$HOME/.vimrc"
+export ZSHRC="$HOME/.zshrc"
+export TERMRC="$HOME/.alacritty.yml"
+
+export BAT_THEME="OneHalfDark"
+
+eval "$(rbenv init - zsh)"
+eval "$(pyenv init -)"
+
+# Alias
+alias cat='bat'
+alias py='python3'
+
+alias dev="cd $DEV_DIR"
+
+alias clip='xclip -selection clipboard'
+
+alias nv='nvim'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

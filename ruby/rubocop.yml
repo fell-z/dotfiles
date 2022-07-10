@@ -1,0 +1,11 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
+Style/TernaryParentheses:
+  Enabled: false
+
+Migration/IfUnlessModifier:
+  Enabled: false
+Migration/WhileUntilModifier:
+  Enabled: false

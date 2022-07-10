@@ -1,0 +1,8 @@
+drafts/
+.vscode/
+__pycache__/
+*.egg-info/
+
+.*.swp
+.*.swo
+*.vim

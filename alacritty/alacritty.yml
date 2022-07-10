@@ -1,0 +1,75 @@
+window:
+  dimensions:
+    columns: 105
+    lines: 24
+  opacity: 0.88
+
+  title: 'Terminal'
+  dynamic_title: true 
+  class:
+    instance: 'Alacritty Instance'
+  
+font:
+  size: 13.5
+  offset:
+    y: 2 # line spacing
+    x: 0 # character spacing
+
+  normal:
+    family: 'JetBrainsMono Nerd Font Mono'
+    style: 'medium'
+  bold:
+    family: 'JetBrainsMono Nerd Font Mono'
+  italic:
+    family: 'JetBrainsMono Nerd Font Mono'
+  bold_italic:
+    family: 'JetBrainsMono Nerd Font Mono'
+
+cursor:
+  style:
+    shape: Underline
+    blinking: On
+
+mouse:
+  hide_when_typing: true
+
+key_bindings:
+  - { key: N, mods: Alt, action: CreateNewWindow }
+
+draw_bold_text_with_bright_colors: true
+
+# Theme (Night Owl)
+colors:
+   # Default colors
+  primary:
+    background: '#011627'
+    foreground: '#d6deeb'
+
+  cursor:
+    text: '#011627'
+    cursor: '#d6deeb'
+
+  selection:
+    background: '#1b90dd'
+
+   # Normal colors
+  normal:
+    black:   '#011627'
+    red:     '#ef5350'
+    green:   '#22da6e'
+    yellow:  '#c5e478'
+    blue:    '#82aaff'
+    magenta: '#c792ea'
+    cyan:    '#21c7a8'
+    white:   '#ffffff'
+
+   # Bright colors
+  bright:
+    black:   '#575656'
+    red:     '#ef5350'
+    green:   '#22da6e'
+    yellow:  '#ffeb95'
+    blue:    '#82aaff'
+    magenta: '#c792ea'
+    cyan:    '#7fdbca'
+    white:   '#ffffff'

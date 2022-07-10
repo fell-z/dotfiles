@@ -1,0 +1,116 @@
+if ($TERM == "alacritty")
+  set term=xterm-256color
+endif
+
+" Plugins
+call plug#begin()
+
+" themes
+Plug 'sainnhe/edge'
+Plug 'haishanh/night-owl.vim'
+
+" visual feedback plugins
+Plug 'ryanoasis/vim-devicons'
+Plug 'itchyny/lightline.vim'
+
+" life quality plugins
+Plug 'tpope/vim-endwise'
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+
+" languages plugins
+Plug 'hail2u/vim-css3-syntax'
+Plug 'sheerun/vim-polyglot'
+
+call plug#end()
+
+" vim-plug related settings
+let g:plug_timeout = 90
+
+" enable 24-bit RGB colors
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" Keybindings
+let mapleader=";" " is like a master key before the actual keybindings
+
+" no split terminal buffer
+nnoremap <leader>t <cmd>edit term://zsh<cr>
+" split terminal buffer
+nnoremap <leader>st <cmd>sp term://zsh<cr>
+" change buffers
+nnoremap <leader>[ <cmd>bp<cr>
+nnoremap <leader>] <cmd>bn<cr>
+
+" exit 'terminal' mode
+tnoremap <Esc> <C-\><C-n>
+
+" Plugins config
+let g:closetag_filenames = '*.html'
+let g:closetag_filetypes = 'html'
+
+" Specific configs for languages
+let g:python_highlight_all = 1
+
+let ruby_operators = 1
+let ruby_pseudo_operators = 1
+let ruby_fold = 1
+
+let g:go_code_completion_enabled = 0
+
+" Native vim settings
+filetype on " enable autodetect filetype, duh
+filetype plugin on
+filetype indent on
+set nocompatible
+
+" Syntax related
+set background=dark
+syntax enable
+colorscheme edge 
+
+"" To make clear to you, me from the future, 'au' does a automatic command
+"" (e.g. set 'something') based on event (e.g. FileType)
+
+" Fold settings
+augroup langs
+  autocmd!
+
+  au FileType python set foldmethod=indent
+  au FileType ruby set foldmethod=syntax
+  au FileType javascript set foldmethod=syntax
+  au FileType css set foldmethod=syntax
+
+  au FileType c set shiftwidth=4
+  au FileType python set shiftwidth=4
+
+  au FileType c set textwidth=95
+  au FileType text set textwidth=100
+augroup END
+
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
+set wrap
+set foldenable
+set foldlevelstart=2
+set foldnestmax=4
+
+" Settings related to editing
+set expandtab " spaces instead of tabs
+set shiftwidth=2
+set autoindent 
+set tabstop=2 " amount of space 
+set nowrap
+set incsearch
+" when scrolling, this line sets a 'margin' between the cursor and the top (or bottom) line
+set scrolloff=7 
+
+set number
+set cursorline
+set showmode
+set title
+" set titlestring=%t\ \/\ Vim" " '%t' stands for filename
