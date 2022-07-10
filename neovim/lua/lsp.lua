@@ -103,10 +103,6 @@ lsp.solargraph.setup {
   capabilities = capabilities,
   on_attach = require("aerial").on_attach,
 }
-lsp.emmet_ls.setup {
-  capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
-}
 lsp.flow.setup {
   capabilities = capabilities,
   on_attach = require("aerial").on_attach,
