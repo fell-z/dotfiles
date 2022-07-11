@@ -82,6 +82,11 @@ require("luasnip.loaders.from_vscode").lazy_load()
 -- Setup lspconfig.
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+lsp.bashls.setup {
+  capabilities = capabilities,
+  on_attach = require("aerial").on_attach,
+}
+
 lsp.pyright.setup {
   capabilities = capabilities,
   on_attach = require("aerial").on_attach,
@@ -103,9 +108,10 @@ lsp.solargraph.setup {
   capabilities = capabilities,
   on_attach = require("aerial").on_attach,
 }
-lsp.eslint.setup {
+lsp.flow.setup {
   capabilities = capabilities,
   on_attach = require("aerial").on_attach,
+  cmd = { "npx", "--no-install", "flow-bin", "lsp" },
 }
 lsp.cssls.setup {
   capabilities = capabilities,
