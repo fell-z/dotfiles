@@ -108,10 +108,17 @@ lsp.solargraph.setup {
   capabilities = capabilities,
   on_attach = require("aerial").on_attach,
 }
+--[[
 lsp.flow.setup {
   capabilities = capabilities,
   on_attach = require("aerial").on_attach,
   cmd = { "npx", "--no-install", "flow-bin", "lsp" },
+}
+  ]]--
+lsp.tsserver.setup {
+  capabilities = capabilities,
+  on_attach = require("aerial").on_attach,
+  single_file_support = true,
 }
 lsp.cssls.setup {
   capabilities = capabilities,
