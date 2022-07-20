@@ -8,7 +8,9 @@ require "options"
 require "keymap"
 require "visual"
 require "plugins"
+require "treesitter"
 require "lsp"
+require "autopairs"
 
 vim.cmd([[
   augroup C
@@ -20,20 +22,6 @@ vim.cmd([[
   augroup Python
     autocmd!
 
-    au FileType python set foldmethod=indent
     au FileType python set shiftwidth=4
-  augroup END
-
-  augroup Ruby
-    autocmd!
-
-    au FileType ruby set foldmethod=syntax
-  augroup END
-
-  augroup Web
-    autocmd!
-
-    au FileType javascript set foldmethod=syntax
-    au FileType css set foldmethod=syntax
   augroup END
 ]])

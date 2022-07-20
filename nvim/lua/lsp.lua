@@ -107,6 +107,7 @@ lsp.clangd.setup {
 lsp.solargraph.setup {
   capabilities = capabilities,
   on_attach = require("aerial").on_attach,
+  single_file_support = true,
 }
 --[[
 lsp.flow.setup {

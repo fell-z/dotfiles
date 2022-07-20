@@ -4,11 +4,13 @@ if vim.fn.has("termguicolors") == 1 then
   vim.opt.termguicolors = true
 end
 
+vim.g.ruby_operators = 1
+vim.g.ruby_pseudo_operators = 1
+
 vim.opt.completeopt = "menu,menuone,preview,noselect"
 
 vim.opt.foldenable = true
-vim.opt.foldlevelstart = 2
-vim.opt.foldnestmax = 4
+vim.opt.foldmethod = "manual"
 
 vim.opt.textwidth = 100
 vim.opt.wrap = true
@@ -19,6 +21,8 @@ vim.opt.tabstop = 2
 
 vim.opt.scrolloff = 12
 
+vim.opt.numberwidth = 2
+vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.showmode = true

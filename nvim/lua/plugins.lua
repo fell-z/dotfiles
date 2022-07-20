@@ -49,41 +49,7 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim"
   use "nvim-lua/popup.nvim"
   use "gpanders/editorconfig.nvim"
-
-  use "sheerun/vim-polyglot"
-  use "ap/vim-css-color"
-  use "hail2u/vim-css3-syntax"
-
-  -- Themes
-  use "haishanh/night-owl.vim"
-  use "folke/tokyonight.nvim"
-  use "folke/lsp-colors.nvim"
-
-  -- QOL plugins
-  use "tpope/vim-endwise"
-  use "jiangmiao/auto-pairs"
-  use "alvan/vim-closetag"
-  use "lukas-reineke/indent-blankline.nvim"
-  use {
-    "folke/zen-mode.nvim",
-    requires = { "folke/twilight.nvim" },
-    config = function()
-      require("zen-mode").setup {}
-    end
-  }
-
-  -- Others
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-
-  use {
-    'akinsho/bufferline.nvim',
-    tag = "v2.*",
-    requires = 'kyazdani42/nvim-web-devicons'
-  }
-
+  use 'stevearc/aerial.nvim'
   use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -97,7 +63,56 @@ return packer.startup(function(use)
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
   }
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.x',
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-fzy-native.nvim"
+    }
+  }
 
-  use 'stevearc/aerial.nvim'
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate"
+  }
 
+  -- Visual 
+  use "EdenEast/nightfox.nvim"
+  use "folke/tokyonight.nvim"
+  use "folke/lsp-colors.nvim"
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+  use {
+    "ap/vim-css-color",
+    ft = { "css" },
+  }
+  use {
+    "hail2u/vim-css3-syntax",
+    ft = { "css" },
+  }
+
+  -- QOL plugins
+  use {
+    "mattn/emmet-vim",
+    ft = { "html" },
+  }
+  use "RRethy/nvim-treesitter-endwise"
+  use "windwp/nvim-ts-autotag"
+  use "lukas-reineke/indent-blankline.nvim"
+  use {
+    "folke/zen-mode.nvim",
+    requires = { "folke/twilight.nvim" },
+    config = function()
+      require("zen-mode").setup {}
+    end
+  }
+  use "windwp/nvim-autopairs"
+
+  -- Others
+
+  if PACKER_BOOTSTRAP then
+    packer.sync()
+  end
 end)

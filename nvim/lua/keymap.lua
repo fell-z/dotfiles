@@ -9,7 +9,7 @@ local map = function (mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, default_opts)
 end
 
-vim.g.mapleader = ';'
+vim.g.mapleader = '\\'
 
 --[[
 local switch_theme = function ()
@@ -22,8 +22,9 @@ end
 ]]--
 
 require("aerial").setup {
+  backends = { "lsp" },
   on_attach = function(bufnr)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>c', '<cmd>AerialToggle float<CR>', {})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>o', '<cmd>AerialToggle float<CR>', {})
   end,
   close_on_select = true,
   width = 20,
@@ -31,7 +32,9 @@ require("aerial").setup {
 
 -- map('n', '<leader>sth', switch_theme)
 
-map('n', '<leader>b', '<cmd>Trouble<cr>')
+vim.g.user_emmet_leader_key = "<leader>i"
+
+map('n', '<leader>d', '<cmd>Trouble<cr>')
 
 map('n', '<leader>[', '<cmd>bp<cr>')
 map('n', '<leader>]', '<cmd>bn<cr>')
