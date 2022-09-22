@@ -1,5 +1,7 @@
 local vim = vim
 
+require "impatient"
+
 vim.g.python3_host_prog = "/home/fell/.pyenv/shims/python3"
 
 vim.cmd("filetype plugin indent on")
@@ -12,16 +14,31 @@ require "treesitter"
 require "lsp"
 require "autopairs"
 
-vim.cmd([[
-  augroup C
-    autocmd!
+local langs = {
+  c = {
+    augroup = vim.api.nvim_create_augroup("C", { clear = true }),
+    pattern = { "*.c", "*.h" },
+    config = function ()
+      vim.opt.shiftwidth = 4
+    end,
+  },
+  python = {
+    augroup = vim.api.nvim_create_augroup("Python", { clear = true }),
+    pattern = { "*.py", "*.pyw" },
+    config = function ()
+      vim.opt.shiftwidth = 4
+    end,
+  },
+}
 
-    au FileType c set shiftwidth=4
-  augroup END
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = langs.c.pattern,
+  group = langs.c.augroup,
+  callback = langs.c.config,
+})
 
-  augroup Python
-    autocmd!
-
-    au FileType python set shiftwidth=4
-  augroup END
-]])
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = langs.python.pattern,
+  group = langs.python.augroup,
+  callback = langs.python.config,
+})

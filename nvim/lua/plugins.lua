@@ -44,7 +44,17 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- Luasnip integration with nvim-cmp plugin
   use "rafamadriz/friendly-snippets"
 
-  -- Neovim-only plugins
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+  }
+
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate"
+  }
+
+  use 'lewis6991/impatient.nvim'
   use "wbthomason/packer.nvim"
   use "nvim-lua/plenary.nvim"
   use "nvim-lua/popup.nvim"
@@ -53,6 +63,7 @@ return packer.startup(function(use)
   use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
+    disable = true,
     requires = {
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons",
@@ -60,24 +71,19 @@ return packer.startup(function(use)
     }
   }
   use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-  }
-  use {
     'nvim-telescope/telescope.nvim', tag = '0.1.x',
     requires = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzy-native.nvim"
-    }
-  }
-
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate"
+    },
+    config = function ()
+      require("telescope").load_extension("aerial")
+      require("telescope").load_extension("workspaces")
+    end
   }
 
   -- Visual 
-  use "EdenEast/nightfox.nvim"
+  -- use "EdenEast/nightfox.nvim"
   use "folke/tokyonight.nvim"
   use "folke/lsp-colors.nvim"
   use {
@@ -88,12 +94,32 @@ return packer.startup(function(use)
     "ap/vim-css-color",
     ft = { "css" },
   }
+  --[[
   use {
     "hail2u/vim-css3-syntax",
     ft = { "css" },
   }
+  ]]--
 
   -- QOL plugins
+  use {
+    "natecraddock/workspaces.nvim",
+    config = function ()
+      require("workspaces").setup {
+        hooks = {
+          open = "Telescope find_files"
+        }
+      }
+    end
+  }
+  use "ggandor/leap.nvim"
+  use {
+    "kylechui/nvim-surround",
+    tag = "*",
+    config = function ()
+      require("nvim-surround").setup {}
+    end
+  }
   use {
     "mattn/emmet-vim",
     ft = { "html" },
@@ -106,7 +132,12 @@ return packer.startup(function(use)
     requires = { "folke/twilight.nvim" },
     config = function()
       require("zen-mode").setup {}
-    end
+    end,
+    cmd = "ZenMode"
+  }
+  use {
+    "folke/twilight.nvim",
+    after = "zen-mode.nvim"
   }
   use "windwp/nvim-autopairs"
 

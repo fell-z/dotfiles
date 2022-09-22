@@ -125,3 +125,11 @@ lsp.cssls.setup {
   capabilities = capabilities,
   on_attach = require("aerial").on_attach,
 }
+lsp.gdscript.setup {
+  capabilities = capabilities,
+  on_attach = require("aerial").on_attach,
+}
+lsp.csharp_ls.setup {
+  capabilities = capabilities,
+  on_attach = require("aerial").on_attach,
+}

@@ -12,12 +12,14 @@ end
 
 vim.cmd(string.format("colorscheme %s", vim.g.default_theme))
 
+--[[
 require("neo-tree").setup {
   window = {
     width = 26,
     position = "float",
   },
 }
+]]--
 
 require("lualine").setup {
   options = {
@@ -28,7 +30,6 @@ require("lualine").setup {
   },
   sections = {
     lualine_x = {
-      { "encoding" },
       { "fileformat", icons_enabled = false },
       { "filetype", colored = false },
     },
@@ -44,12 +45,3 @@ require("lualine").setup {
     "man"
   }
 }
-
---[[
-require("bufferline").setup {
-  options = {
-    diagnostics = "nvim_lsp",
-  },
-}
-]]--
-
