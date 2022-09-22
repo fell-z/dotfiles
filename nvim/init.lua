@@ -2,7 +2,7 @@ local vim = vim
 
 require "impatient"
 
-vim.g.python3_host_prog = "/home/fell/.pyenv/shims/python3"
+vim.g.python3_host_prog = os.getenv("PYTHON_EXECUTABLE")
 
 vim.cmd("filetype plugin indent on")
 
