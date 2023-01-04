@@ -32,7 +32,7 @@ configs.setup {
     disable = { "" },
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true, disable = { "yaml", "ruby", "python", "c" } },
+  indent = { enable = true, disable = { "yaml", "ruby", "python", "c", "java" } },
   autotag = {
     enable = true,
     filetypes = {

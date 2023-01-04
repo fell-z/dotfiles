@@ -37,8 +37,8 @@ cmp.setup({
   },
 
   mapping = {
-    ['<A-k>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i' }),
-    ['<A-l>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i' }),
+    ['<A-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i' }),
+    ['<A-i>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i' }),
     -- ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i' }),
     ['<A-e>'] = cmp.mapping({
         i = cmp.mapping.abort(),
@@ -80,56 +80,50 @@ cmp.setup({
 require("luasnip.loaders.from_vscode").lazy_load()
 
 -- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 lsp.bashls.setup {
   capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
 }
 
 lsp.pyright.setup {
   capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
 }
 lsp.html.setup {
   capabilities = capabilities,
   cmd = { "vscode-html-language-server", "--stdio"},
-  on_attach = require("aerial").on_attach,
 }
 lsp.sumneko_lua.setup {
   capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
 }
 lsp.clangd.setup {
   capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
 }
 lsp.solargraph.setup {
   capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
   single_file_support = true,
 }
 --[[
 lsp.flow.setup {
   capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
   cmd = { "npx", "--no-install", "flow-bin", "lsp" },
 }
   ]]--
 lsp.tsserver.setup {
   capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
   single_file_support = true,
 }
 lsp.cssls.setup {
   capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
 }
 lsp.gdscript.setup {
   capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
 }
 lsp.csharp_ls.setup {
   capabilities = capabilities,
-  on_attach = require("aerial").on_attach,
+}
+lsp.jdtls.setup {
+  capabilities = capabilities,
+  single_file_support = true,
 }

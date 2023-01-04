@@ -50,6 +50,13 @@ return packer.startup(function(use)
   }
 
   use {
+    'lewis6991/gitsigns.nvim',
+    config = function ()
+      require("gitsigns").setup {}
+    end
+  }
+
+  use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate"
   }
@@ -78,7 +85,7 @@ return packer.startup(function(use)
     },
     config = function ()
       require("telescope").load_extension("aerial")
-      require("telescope").load_extension("workspaces")
+      require('telescope').load_extension('projects')
     end
   }
 
@@ -102,14 +109,11 @@ return packer.startup(function(use)
   ]]--
 
   -- QOL plugins
+  -- Lua
   use {
-    "natecraddock/workspaces.nvim",
-    config = function ()
-      require("workspaces").setup {
-        hooks = {
-          open = "Telescope find_files"
-        }
-      }
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup {}
     end
   }
   use "ggandor/leap.nvim"

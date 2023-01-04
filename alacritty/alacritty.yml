@@ -1,3 +1,10 @@
+# Go all the way down to find the possible actions
+key_bindings:
+    - { key: N, mods: Alt, action: CreateNewWindow }
+    - { key: Period, mods: Alt, action: IncreaseFontSize }
+    - { key: Comma, mods: Alt, action: DecreaseFontSize }
+    - { key: Semicolon, mods: Alt, action: ResetFontSize }
+
 window:
   dimensions:
     columns: 105
@@ -10,9 +17,9 @@ window:
     instance: 'Alacritty Instance'
   
 font:
-  size: 13.5
+  size: 12.0
   offset:
-    y: 2 # line spacing
+    y: 0 # line spacing
     x: 0 # character spacing
 
   normal:
@@ -33,43 +40,87 @@ cursor:
 mouse:
   hide_when_typing: true
 
-key_bindings:
-  - { key: N, mods: Alt, action: CreateNewWindow }
-
 draw_bold_text_with_bright_colors: true
 
-# Theme (Night Owl)
+# TokyoNight Alacritty Colors
 colors:
-   # Default colors
+  # Default colors
   primary:
-    background: '#011627'
-    foreground: '#d6deeb'
+    background: '0x1a1b26'
+    foreground: '0xc0caf5'
 
-  cursor:
-    text: '#011627'
-    cursor: '#d6deeb'
-
-  selection:
-    background: '#1b90dd'
-
-   # Normal colors
+  # Normal colors
   normal:
-    black:   '#011627'
-    red:     '#ef5350'
-    green:   '#22da6e'
-    yellow:  '#c5e478'
-    blue:    '#82aaff'
-    magenta: '#c792ea'
-    cyan:    '#21c7a8'
-    white:   '#ffffff'
+    black:   '0x15161E'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xa9b1d6'
 
-   # Bright colors
+  # Bright colors
   bright:
-    black:   '#575656'
-    red:     '#ef5350'
-    green:   '#22da6e'
-    yellow:  '#ffeb95'
-    blue:    '#82aaff'
-    magenta: '#c792ea'
-    cyan:    '#7fdbca'
-    white:   '#ffffff'
+    black:   '0x414868'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xc0caf5'
+
+  indexed_colors:
+    - { index: 16, color: '0xff9e64' }
+    - { index: 17, color: '0xdb4b4b' }
+
+## ACTIONS AND KEYCODES
+
+# List of key codes -- https://docs.rs/glutin/*/glutin/event/enum.VirtualKeyCode.html#variants
+# Complete list of actions -- https://github.com/alacritty/alacritty/blob/master/alacritty.yml
+
+# List of actions - Linux/BSD exclusive
+#   - CopySelection
+#       Copy from the selection buffer.
+#   - PasteSelection
+#       Paste from the selection buffer.
+
+# List of actions - Cross-platform
+#   - ToggleViMode
+#   - SearchForward
+#       Start searching toward the right of the search origin.
+#   - SearchBackward
+#       Start searching toward the left of the search origin.
+#   - Copy
+#   - Paste
+#   - IncreaseFontSize
+#   - DecreaseFontSize
+#   - ResetFontSize
+#   - ScrollPageUp
+#   - ScrollPageDown
+#   - ScrollHalfPageUp
+#   - ScrollHalfPageDown
+#   - ScrollLineUp
+#   - ScrollLineDown
+#   - ScrollToTop
+#   - ScrollToBottom
+#   - ClearHistory
+#       Remove the terminal's scrollback history.
+#   - Hide
+#       Hide the Alacritty window.
+#   - Minimize
+#       Minimize the Alacritty window.
+#   - Quit
+#       Quit Alacritty.
+#   - ToggleFullscreen
+#   - SpawnNewInstance
+#       Spawn a new instance of Alacritty.
+#   - CreateNewWindow
+#       Create a new Alacritty window from the current process.
+#   - ClearLogNotice
+#       Clear Alacritty's UI warning and error notice.
+#   - ClearSelection
+#       Remove the active selection.
+#   - ReceiveChar
+#   - None
