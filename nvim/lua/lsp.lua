@@ -94,8 +94,13 @@ lsp.html.setup {
   capabilities = capabilities,
   cmd = { "vscode-html-language-server", "--stdio"},
 }
-lsp.sumneko_lua.setup {
+lsp.lua_ls.setup {
   capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = { globals = "vim" },
+    }
+  },
 }
 lsp.clangd.setup {
   capabilities = capabilities,

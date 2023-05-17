@@ -1,5 +1,7 @@
 local vim = vim
 
+require "plugins"
+
 require "impatient"
 
 vim.g.python3_host_prog = os.getenv("PYTHON_EXECUTABLE")
@@ -9,7 +11,6 @@ vim.cmd("filetype plugin indent on")
 require "options"
 require "keymap"
 require "visual"
-require "plugins"
 require "treesitter"
 require "lsp"
 require "autopairs"

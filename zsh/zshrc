@@ -43,14 +43,13 @@ export DEV_DIR="$HOME/Dev"
 export PYENV_ROOT="$HOME/.pyenv"
 export RBENV_ROOT="$HOME/.rbenv"
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export DENO_INSTALL="/home/fell/.deno"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH=/usr/bin:$PATH:/opt/firefox:$HOME/AppImages:$HOME/.local/bin:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$DENO_INSTALL/bin
+export PATH=$PATH:$HOME/AppImages:$HOME/.local/bin:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$DENO_INSTALL/bin
 
 export NVIM_DIR="$HOME/.config/nvim"
 export NVIMRC="$NVIM_DIR/init.lua"
@@ -77,14 +76,4 @@ alias clip='xclip -selection clipboard'
 
 alias nv='nvim'
 
-# Funcs
-changeJavaHome() {
-  if [ $JAVA_HOME = "/usr/lib/jvm/java-8-openjdk" ]; then
-    export JAVA_HOME="/usr/lib/jvm/jdk-17.0.5"
-  else
-    export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
-  fi
-  export PATH=$JAVA_HOME/bin:$PATH
-}
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias ls='ls --color=tty --group-directories-first'
