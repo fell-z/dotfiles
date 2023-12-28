@@ -2,7 +2,7 @@ local vim = vim
 
 require "plugins"
 
-require "impatient"
+vim.loader.enable()
 
 vim.g.python3_host_prog = os.getenv("PYTHON_EXECUTABLE")
 

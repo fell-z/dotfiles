@@ -9,6 +9,7 @@ export SPACESHIP_PROMPT_SEPARATE_LINE=true
 
 export SPACESHIP_CHAR_SYMBOL=" "
 export SPACESHIP_CHAR_SYMBOL_SECONDARY=" "
+export SPACESHIP_RUBY_SYMBOL="󰴭 "
 
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
@@ -43,13 +44,15 @@ export DEV_DIR="$HOME/Dev"
 export PYENV_ROOT="$HOME/.pyenv"
 export RBENV_ROOT="$HOME/.rbenv"
 
-export DENO_INSTALL="/home/fell/.deno"
+export DENO_INSTALL="$HOME/.deno"
+
+export LUA_LS_DIR="$HOME/.lua-language-server"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH=$PATH:$HOME/AppImages:$HOME/.local/bin:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$DENO_INSTALL/bin
+export PATH=$PATH:$HOME/AppImages:$HOME/.local/bin:$RBENV_ROOT/bin:$PYENV_ROOT/bin:$DENO_INSTALL/bin:$LUA_LS_DIR/bin
 
 export NVIM_DIR="$HOME/.config/nvim"
 export NVIMRC="$NVIM_DIR/init.lua"

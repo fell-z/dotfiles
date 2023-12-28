@@ -61,7 +61,6 @@ return packer.startup(function(use)
     run = ":TSUpdate"
   }
 
-  use 'lewis6991/impatient.nvim'
   use "wbthomason/packer.nvim"
   use "nvim-lua/plenary.nvim"
   use "nvim-lua/popup.nvim"
