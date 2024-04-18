@@ -6,7 +6,8 @@
 [core]
 	editor = nvim
 	excludesfile = /home/fell/.gitignore_global
-	autocrlf = false
+	autocrlf = input
+	safecrlf = true
 [commit]
 	template = /home/fell/.gitmessage.txt
 [credential "https://github.com"]
