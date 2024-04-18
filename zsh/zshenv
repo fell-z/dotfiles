@@ -1,0 +1,27 @@
+if [[ -f "$HOME/.cargo/env" ]]; then
+  source "$HOME/.cargo/env"
+fi
+
+PYENV_ROOT="$HOME/.pyenv"
+if [[ -d "$PYENV_ROOT" ]]; then
+  export PYENV_ROOT
+  export PATH=$PATH:$PYENV_ROOT/bin
+  # path=("$path" "$PYENV_ROOT/bin")
+fi
+
+RBENV_ROOT="$HOME/.rbenv"
+if [[ -d "$RBENV_ROOT" ]]; then
+  export RBENV_ROOT
+  export PATH=$PATH:$RBENV_ROOT/bin
+  # path=("$path" "$RBENV_ROOT/bin")
+fi
+
+DENO_INSTALL="$HOME/.deno"
+if [[ -d "$DENO_INSTALL" ]]; then
+  export DENO_INSTALL
+  export PATH=$PATH:$DENO_INSTALL/bin
+  #path=("$path" "$DENO_INSTALL/bin")
+fi
+
+export DOTNET_CLI_UI_LANGUAGE=en
+export EDITOR="nvim"
