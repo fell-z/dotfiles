@@ -4,6 +4,12 @@ local cmp = require "cmp"
 local lspkind = require "lspkind"
 local luasnip = require "luasnip"
 
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, linehl = "", numhl = "" })
+end
+
 -- I have no idea of how this work step by step,
 -- but i know that's necessary for the 'Super Tab' work better
 local check_backspace = function ()
@@ -20,9 +26,9 @@ cmp.setup({
 
   formatting = {
     format = lspkind.cmp_format({
-        maxwidth = 40,
-        mode = "symbol_text",
-      }),
+      maxwidth = 40,
+      mode = "symbol_text",
+    }),
   },
 
   window = {
@@ -37,14 +43,14 @@ cmp.setup({
   },
 
   mapping = {
-    ['<A-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i' }),
-    ['<A-i>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i' }),
+    ['<C-,>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i' }),
+    ['<C-.>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i' }),
     -- ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i' }),
-    ['<A-e>'] = cmp.mapping({
+    ['<C-;>'] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-    ['<A-z>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-/>'] = cmp.mapping.confirm({ select = true }),
     ['<Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -131,4 +137,20 @@ lsp.csharp_ls.setup {
 lsp.jdtls.setup {
   capabilities = capabilities,
   single_file_support = true,
+}
+lsp.texlab.setup {
+  settings = {
+    texlab = {
+      build = {
+        executable = "tectonic",
+        args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" }
+      },
+      chktex = {
+        onEdit = true
+      }
+    }
+  }
+}
+lsp.emmet_language_server.setup {
+  capabilities = capabilities,
 }

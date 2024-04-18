@@ -84,37 +84,22 @@ return packer.startup(function(use)
     },
     config = function ()
       require("telescope").load_extension("aerial")
-      require('telescope').load_extension('projects')
     end
   }
 
   -- Visual 
   -- use "EdenEast/nightfox.nvim"
+  use { "catppuccin/nvim", as = "catppuccin" }
   use "folke/tokyonight.nvim"
   use "folke/lsp-colors.nvim"
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-  use {
-    "ap/vim-css-color",
-    ft = { "css" },
-  }
-  --[[
-  use {
-    "hail2u/vim-css3-syntax",
-    ft = { "css" },
-  }
-  ]]--
+  use "brenoprata10/nvim-highlight-colors"
 
   -- QOL plugins
   -- Lua
-  use {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup {}
-    end
-  }
   use "ggandor/leap.nvim"
   use {
     "kylechui/nvim-surround",
@@ -122,10 +107,6 @@ return packer.startup(function(use)
     config = function ()
       require("nvim-surround").setup {}
     end
-  }
-  use {
-    "mattn/emmet-vim",
-    ft = { "html" },
   }
   use "RRethy/nvim-treesitter-endwise"
   use "windwp/nvim-ts-autotag"
@@ -145,6 +126,8 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs"
 
   -- Others
+  use "andweeb/presence.nvim"
+  use "goolord/alpha-nvim"
 
   if PACKER_BOOTSTRAP then
     packer.sync()

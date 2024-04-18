@@ -1,6 +1,14 @@
 local vim = vim
+local os = require("os")
 
-vim.cmd("colorscheme tokyonight-storm")
+local time = tonumber(os.date("%H"))
+if time < 16 and time > 6 then
+  vim.cmd("colorscheme catppuccin-latte")
+else
+  vim.cmd("colorscheme tokyonight-storm")
+end
+
+require("nvim-highlight-colors").setup {}
 
 --[[
 require("neo-tree").setup {
@@ -13,7 +21,6 @@ require("neo-tree").setup {
 
 require("lualine").setup {
   options = {
-    theme = "tokyonight",
     disabled_filetypes = { "neo-tree" },
     section_separators = { left = "", right = "" },
     component_separators = "|"

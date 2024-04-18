@@ -3,16 +3,22 @@ if not working then
   return
 end
 
--- htmlo
 configs.setup {
   ensure_installed = {
     "bash",
     "c",
+    "cpp",
     "comment",
     "css",
     "gdscript",
+    "git_config",
+    "git_rebase",
+    "gitattributes",
+    "gitcommit",
+    "gitignore",
     "html",
     "http",
+    "ini",
     "javascript",
     "json",
     "lua",
@@ -32,7 +38,7 @@ configs.setup {
     disable = { "" },
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true, disable = { "yaml", "ruby", "python", "c", "java" } },
+  indent = { enable = true, disable = { "yaml", "ruby", "python", "c", "java", "lua" } },
   autotag = {
     enable = true,
     filetypes = {
