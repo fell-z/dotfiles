@@ -1,9 +1,4 @@
-local working, configs = pcall(require, "nvim-treesitter.configs")
-if not working then
-  return
-end
-
-configs.setup {
+local config = {
   ensure_installed = {
     "bash",
     "c",
@@ -38,7 +33,7 @@ configs.setup {
     disable = { "" },
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true, disable = { "yaml", "ruby", "python", "c", "java", "lua" } },
+  indent = { enable = true, disable = { "yaml", "ruby", "python", "c", "java", "lua", "css" } },
   autotag = {
     enable = true,
     filetypes = {
@@ -59,4 +54,18 @@ configs.setup {
   endwise = {
     enable = true,
   }
+}
+
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = "TSUpdate",
+    dependencies = {
+      "RRethy/nvim-treesitter-endwise",
+      "windwp/nvim-ts-autotag"
+    },
+    config = function ()
+      require("nvim-treesitter.configs").setup(config)
+    end
+  },
 }

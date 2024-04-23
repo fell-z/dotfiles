@@ -8,17 +8,6 @@ else
   vim.cmd("colorscheme tokyonight-storm")
 end
 
-require("nvim-highlight-colors").setup {}
-
---[[
-require("neo-tree").setup {
-  window = {
-    width = 26,
-    position = "float",
-  },
-}
-]]--
-
 require("lualine").setup {
   options = {
     disabled_filetypes = { "neo-tree" },
@@ -29,6 +18,7 @@ require("lualine").setup {
     lualine_x = {
       { "fileformat", icons_enabled = false },
       { "filetype", colored = false },
+      { "aerial" }
     },
     lualine_y = {},
   },

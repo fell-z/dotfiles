@@ -83,8 +83,6 @@ cmp.setup({
   })
 })
 
-require("luasnip.loaders.from_vscode").lazy_load()
-
 -- Setup lspconfig.
 -- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -102,11 +100,6 @@ lsp.html.setup {
 }
 lsp.lua_ls.setup {
   capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = { globals = "vim" },
-    }
-  },
 }
 lsp.clangd.setup {
   capabilities = capabilities,
