@@ -4,26 +4,28 @@ return {
     branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-fzy-native.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = vim.fn.executable("make") == 1 and "make"
+          or "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+        enabled = vim.fn.executable("make") == 1 or vim.fn.executable("cmake") == 1,
+      },
       {
         "stevearc/aerial.nvim",
         config = function ()
-          require("aerial").setup({
-            backends = { "lsp" },
-            on_attach = function(bufnr)
-              vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fs", "<cmd>Telescope aerial<CR>", {})
-            end,
-          })
+          require("aerial").setup({ backends = { "lsp" } })
         end
       }
     },
     config = function ()
       require("telescope").load_extension("aerial")
+      require("telescope").load_extension("fzf")
     end,
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n" },
-      { "<leader>fs", "<cmd>Telescope aerial<cr>", mode = "n" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", mode = "n" },
-    }
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n", desc = "Find files" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", mode = "n", desc = "Find buffers" },
+      { "<leader>fs", "<cmd>Telescope aerial<cr>", mode = "n", desc = "Goto symbol" }
+    },
+    event = "VeryLazy"
   }
 }

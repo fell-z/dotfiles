@@ -16,19 +16,20 @@ require("lualine").setup {
   },
   sections = {
     lualine_x = {
-      { "fileformat", icons_enabled = false },
-      { "filetype", colored = false },
-      { "aerial" }
+      { "filetype", colored = true },
     },
-    lualine_y = {},
+    lualine_y = {
+      { "fileformat", icons_enabled = false },
+      { "filesize" }
+    },
   },
   tabline = {
     lualine_a = { { "buffers", mode = 2 } },
-    lualine_z = { "tabs" },
+    lualine_x = { "aerial" },
   },
   extensions = {
-    "neo-tree",
     "aerial",
-    "man"
+    "man",
+    "trouble"
   }
 }

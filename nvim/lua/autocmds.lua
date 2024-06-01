@@ -22,22 +22,19 @@ local langs = {
       vim.opt.shiftwidth = 4
     end,
   },
+  ruby = {
+    augroup = vim.api.nvim_create_augroup("Ruby", { clear = true }),
+    pattern = { "*.rb" },
+    config = function ()
+      require("nvim-highlight-colors").turnOff()
+    end,
+  }
 }
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = langs.c.pattern,
-  group = langs.c.augroup,
-  callback = langs.c.config,
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = langs.cpp.pattern,
-  group = langs.cpp.augroup,
-  callback = langs.cpp.config,
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = langs.python.pattern,
-  group = langs.python.augroup,
-  callback = langs.python.config,
-})
+for _lang, settings in pairs(langs) do
+  vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = settings.pattern,
+    group = settings.augroup,
+    callback = settings.config,
+  })
+end

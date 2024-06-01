@@ -1,19 +1,13 @@
-local vim = vim
+local wk = require("which-key")
 
-local map = function(mode, lhs, rhs, opts)
-	local default_opts = { noremap = true }
+wk.register(
+  {
+    ["["] = { "<cmd>bp<cr>", "Previous buffer" },
+    ["]"] = { "<cmd>bn<cr>", "Next buffer" },
+    ["t"] = { "<cmd>terminal<cr>", "Open a terminal buffer" },
+  },
+  { prefix = "<leader>", mode = "n" }
+)
 
-	-- keep rightmost table value, opts, if there's a certain key in both tables
-	if opts then
-		default_opts = vim.tbl_extend("force", default_opts, opts)
-	end
-
-	vim.keymap.set(mode, lhs, rhs, default_opts)
-end
-
-map("n", "<leader>[", "<cmd>bp<cr>")
-map("n", "<leader>]", "<cmd>bn<cr>")
-
-map("n", "<leader>t", "<cmd>edit term://zsh<cr>")
-map("n", "<leader>spt", "<cmd>sp term://zsh<cr>")
-map("t", "<Esc>", "<C-\\><C-n>")
+-- this mapping doesn't work as expected with which-key, don't know how to fix. Strange
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true })

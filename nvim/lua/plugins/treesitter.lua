@@ -21,8 +21,9 @@ local config = {
     "markdown",
     "python",
     "ruby",
+    "rust",
     -- "sql",
-    -- "typescript",
+    "typescript",
     "vim",
     "yaml"
   },
@@ -33,24 +34,7 @@ local config = {
     disable = { "" },
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true, disable = { "yaml", "ruby", "python", "c", "java", "lua", "css" } },
-  autotag = {
-    enable = true,
-    filetypes = {
-      "html",
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
-      "vue",
-      "tsx",
-      "jsx",
-      "xml",
-      "markdown",
-      "erb",
-      "eruby"
-    },
-  },
+  indent = { enable = true, disable = { "yaml", "ruby", "python", "c", "java", "lua", "css", "html" } },
   endwise = {
     enable = true,
   }
@@ -59,10 +43,13 @@ local config = {
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    build = "TSUpdate",
+    build = ":TSUpdate",
     dependencies = {
+      {
+        "windwp/nvim-ts-autotag",
+        opts = {},
+      },
       "RRethy/nvim-treesitter-endwise",
-      "windwp/nvim-ts-autotag"
     },
     config = function ()
       require("nvim-treesitter.configs").setup(config)

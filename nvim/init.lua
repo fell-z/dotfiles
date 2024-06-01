@@ -25,7 +25,4 @@ vim.cmd("filetype plugin indent on")
 require "options"
 require "keymaps"
 require "ui"
-require "lsp"
-require "autopairs"
-require "greeter"
 require "autocmds"

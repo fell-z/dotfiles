@@ -116,17 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# alias for batcat aka. cat done better (quite there)
-alias bat='batcat'
-
 alias py='python3'
-
-alias lua='lua54'
-alias luac='luac54'
-
-export PATH=$PATH:/opt/firefox:/usr/local/go/bin:/home/fell/.local/bin:/home/fell/AppImages:/home/fell/go/bin
-
-export BAT_THEME="OneHalfDark"
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -134,10 +124,3 @@ parse_git_branch() {
 export PS1="\[\e[3;31m\]\u@\h \[\e[0;36m\]'\W'\[\e[0;33m\]\$(parse_git_branch)\[\e[35m\] $ \[\e[00m\]"
 
 # \[\e[3;31m\] code for colors and formatting, separated using semicolons ";"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "$HOME/.cargo/env"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
