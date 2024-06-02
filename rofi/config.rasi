@@ -1,0 +1,41 @@
+configuration {
+  modi: ["drun", "window"];
+  icon-theme: "Colloid-orange-dark";
+  show-icons: true;
+  terminal: "alacritty";
+  disable-history: true;
+  display-drun: " ";
+  display-window: " ";
+
+  kb-row-up: "Up,Control+k";
+  kb-row-left: "Left,Control+h";
+  kb-row-right: "Right,Control+l";
+  kb-row-down: "Down,Control+j";
+  kb-accept-entry: "Control+z,Return,KP_Enter";
+
+  // fixes
+  kb-remove-to-eol: "";
+  kb-move-char-back: "Control+b";
+  kb-remove-char-back: "BackSpace";
+  kb-move-char-forward: "Control+f";
+  kb-mode-complete: "Control+o";
+
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+
+@theme "tokyonight_big1"
+
+* {
+  font: "JetBrainsMono Nerd Font 10";
+}
+
+element {
+  spacing: 8px;
+}

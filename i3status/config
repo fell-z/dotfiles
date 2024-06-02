@@ -1,0 +1,50 @@
+general {
+  colors = true
+  markup = "pango"
+}
+
+order += "ethernet _first_"
+order += "cpu_temperature 0"
+order += "cpu_usage"
+order += "memory"
+order += "load"
+order += "disk /home"
+order += "volume master"
+order += "time"
+
+ethernet _first_ {
+  format_up = "󰈀 %ip (%speed)"
+  format_down = "󰈀 down"
+}
+
+cpu_temperature 0 {
+  format = " Temp: %degreesºC"
+  path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
+}
+
+cpu_usage {
+  format = " Usage: %usage"
+}
+
+memory {
+  format = " U: %used A: %available"
+  threshold_degraded = "500M"
+}
+
+load {
+  format = " (%1min) : (%5min)"
+}
+
+disk "/home" {
+  format = "󰋊 %avail"
+}
+
+volume master {
+  device = "default"
+  format = "󰝚 (%volume)"
+  format_muted = "󰝛 (%volume)"
+}
+
+time {
+  format = " %d/%m/%Y %H:%M:%S"
+}

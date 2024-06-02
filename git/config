@@ -5,11 +5,11 @@
 	defaultBranch = main
 [core]
 	editor = nvim
-	excludesfile = /home/fell/.gitignore_global
+	excludesfile = /home/fell/.config/git/gitignore_global
 	autocrlf = input
 	safecrlf = true
 [commit]
-	template = /home/fell/.gitmessage.txt
+	template = /home/fell/.config/git/gitmessage.txt
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential

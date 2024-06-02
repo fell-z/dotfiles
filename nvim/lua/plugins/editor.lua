@@ -20,9 +20,19 @@ return {
   {
     "folke/trouble.nvim",
     opts = { use_diagnostic_signs = true },
+    cmd = "Trouble",
     dependencies = { "kyazdani42/nvim-web-devicons" },
     keys = {
-      { "<leader>d", "<cmd>Trouble<cr>", mode = "n", desc = "See diagnostics" }
+      {
+        "<leader>dd", "<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>",
+        mode = "n",
+        desc = "See buffer diagnostics (Trouble)"
+      },
+      {
+        "<leader>ds", "<cmd>Trouble lsp_document_symbols toggle focus=true win.position=right<cr>",
+        mode = "n",
+        desc = "See symbols (Trouble)"
+      },
     }
   },
 

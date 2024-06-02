@@ -13,7 +13,12 @@ return {
       {
         "stevearc/aerial.nvim",
         config = function ()
-          require("aerial").setup({ backends = { "lsp" } })
+          require("aerial").setup({
+            backends = {
+              ["_"] = { "treesitter", "lsp" },
+              typescript = { "lsp", "treesitter" },
+            }
+          })
         end
       }
     },
