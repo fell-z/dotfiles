@@ -5,11 +5,11 @@ return {
     opts = {},
     keys = {
       {
-        "<leader>eft",
+        "<leader>ef",
         function ()
           require("mini.files").open(vim.uv.cwd(), true)
         end,
-        desc = "Open mini.files",
+        desc = "Open and edit file system (mini.files)",
       }
     }
   },

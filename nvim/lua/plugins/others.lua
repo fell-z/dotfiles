@@ -2,7 +2,7 @@ return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-lua/popup.nvim", lazy = true },
   { "gpanders/editorconfig.nvim", lazy = true },
-  "andweeb/presence.nvim",
+  { "andweeb/presence.nvim", lazy = true },
 
   {
     "folke/which-key.nvim",
@@ -19,6 +19,20 @@ return {
     opts = {},
     event = "VeryLazy",
     enabled = vim.fn.has("nvim-0.10.0") == 1,
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "<leader>ft", "<cmd>TodoTelescope<cr>",
+        mode = "n",
+        desc = "Find todo comments (telescope)"
+      }
+    }
   },
 
   {
@@ -41,12 +55,41 @@ return {
     end,
     keys = {
       {
-        "<leader>un",
+        "<leader>xn",
         function()
           require("notify").dismiss({ silent = true, pending = true })
         end,
         desc = "Dismiss All Notifications",
       },
     },
-  }
+  },
+
+  {
+    "folke/lazydev.nvim",
+    event = "VeryLazy",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- Library items can be absolute paths
+        -- "~/projects/my-awesome-lib",
+        -- Or relative, which means they will be resolved as a plugin
+        -- "LazyVim",
+        -- When relative, you can also provide a path to the library in the plugin dir
+        "luvit-meta/library", -- see below
+      },
+    },
+    dependencies = {
+      { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+      { -- optional completion source for require statements and module annotations
+        "hrsh7th/nvim-cmp",
+        opts = function(_, opts)
+          opts.sources = opts.sources or {}
+          table.insert(opts.sources, {
+            name = "lazydev",
+            group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+          })
+        end,
+      },
+    },
+  },
 }

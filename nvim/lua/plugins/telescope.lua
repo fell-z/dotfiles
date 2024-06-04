@@ -27,9 +27,9 @@ return {
       require("telescope").load_extension("fzf")
     end,
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n", desc = "Find files" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", mode = "n", desc = "Find buffers" },
-      { "<leader>fs", "<cmd>Telescope aerial<cr>", mode = "n", desc = "Goto symbol" }
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n", desc = "Find files (telescope)" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", mode = "n", desc = "Find buffers (telescope)" },
+      { "<leader>fs", "<cmd>Telescope aerial<cr>", mode = "n", desc = "Find symbols (telescope)" }
     },
     event = "VeryLazy"
   }

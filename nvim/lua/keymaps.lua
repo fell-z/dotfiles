@@ -2,6 +2,11 @@ local wk = require("which-key")
 
 wk.register(
   {
+    ["e"] = { name = "+edit" },
+    ["f"] = { name = "+find" },
+    ["d"] = { name = "+trouble" },
+    ["x"] = { name = "+others" },
+
     ["["] = { "<cmd>bp<cr>", "Previous buffer" },
     ["]"] = { "<cmd>bn<cr>", "Next buffer" },
     ["t"] = { "<cmd>terminal<cr>", "Open a terminal buffer" },

@@ -16,6 +16,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.python3_host_prog = "$HOME/.pyenv/shims/python3"
 vim.g.mapleader = " "
 
+-- limit lazydev.nvim using exrc
+vim.opt.exrc = true
+vim.g.lazydev_enabled = false
+
 require("lazy").setup("plugins")
 
 vim.loader.enable()

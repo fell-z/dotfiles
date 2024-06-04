@@ -1,5 +1,3 @@
-local vim = vim
-
 local langs = {
   c = {
     augroup = vim.api.nvim_create_augroup("C", { clear = true }),

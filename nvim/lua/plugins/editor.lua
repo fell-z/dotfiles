@@ -1,23 +1,5 @@
 return {
   {
-    "folke/zen-mode.nvim",
-    dependencies = { "folke/twilight.nvim" },
-    cmd = "ZenMode",
-    opts = {},
-  },
-
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-    event = "VeryLazy",
-    opts = {},
-  },
-
-  { "brenoprata10/nvim-highlight-colors", opts = {}, },
-
-  { "lewis6991/gitsigns.nvim", opts = {}, },
-
-  {
     "folke/trouble.nvim",
     opts = { use_diagnostic_signs = true },
     cmd = "Trouble",
@@ -33,18 +15,75 @@ return {
         mode = "n",
         desc = "See symbols (Trouble)"
       },
-    }
-  },
-
---[[
-  {
-    "ggandor/leap.nvim",
-    keys = {
-      { "f", "<Plug>(leap-forward)", mode = { "n", "v" }, desc = "Search forward" },
-      { "F", "<Plug>(leap-backward)", mode = { "n", "v" }, desc = "Search backward"}
     },
   },
-  ]]--
+
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      events = { "BufWritePost", "BufReadPost", "InsertLeave", "TextChanged" },
+      linters_by_ft = {
+        c = { "clangtidy" },
+        css = { "stylelint" },
+        html = { "htmlhint" },
+        python = { "ruff", "pyre" },
+        ruby = { "rubocop" },
+        sh = { "shellcheck" }
+      }
+    },
+    config = function (_, opts)
+      local lint = require("lint")
+
+      local debounce = function (ms, fn)
+        local timer = vim.uv.new_timer()
+        return function ()
+          local argv = {}
+          timer:start(ms, 0, function()
+            timer:stop()
+            vim.schedule_wrap(fn)(unpack(argv))
+          end)
+        end
+      end
+
+      lint.linters_by_ft = opts.linters_by_ft
+
+      vim.api.nvim_create_autocmd(opts.events, {
+        group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+        callback = debounce(100, lint.try_lint)
+      })
+    end
+  },
+
+  {
+    "stevearc/conform.nvim",
+    config = function ()
+      local web_fmts = { { "prettierd", "prettier" } }
+
+      require("conform").setup {
+        formatters_by_ft = {
+          html = web_fmts,
+          css = web_fmts,
+          javascript = web_fmts,
+          typescript = web_fmts,
+          c = { "clang-format" },
+          cpp = { "clang-format" },
+          lua = { "stylua" },
+          ruby = { "rubocop" },
+          python = { "ruff_format", "ruff_organize_imports" },
+          sh = { "shfmt" },
+        }
+      }
+    end,
+    keys = {
+      {
+        "<leader>ex",
+        function ()
+          require("conform").format({ async = true, lsp_fallback = true })
+        end,
+        desc = "Format buffer (conform)",
+      }
+    },
+  },
 
   {
     "folke/flash.nvim",
@@ -60,6 +99,30 @@ return {
   },
 
   {
+    "lewis6991/gitsigns.nvim",
+    opts = {},
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    opts = {},
+  },
+
+  {
+    "folke/zen-mode.nvim",
+    dependencies = { "folke/twilight.nvim" },
+    cmd = "ZenMode",
+    opts = {},
+  },
+
+  {
+    "brenoprata10/nvim-highlight-colors",
+    opts = {},
+  },
+
+  {
     "olrtg/nvim-emmet",
     ft = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact" },
     keys = {
@@ -70,35 +133,8 @@ return {
         end,
         mode = { "n", "v" },
         desc = "Emmet: Wrap with abbreviation"
-      }
-    }
-  },
-
-  {
-    "stevearc/conform.nvim",
-    config = function ()
-      local web_fmts = { { "prettierd", "prettier" } }
-
-      require("conform").setup {
-        formatters_by_ft = {
-          lua = { "stylua" },
-          ruby = { "rubocop" },
-          html = web_fmts,
-          css = web_fmts,
-          javascript = web_fmts,
-          typescript = web_fmts,
-        }
-      }
-    end,
-    keys = {
-      {
-        "<leader>fmt",
-        function ()
-          require("conform").format({ async = true, lsp_fallback = true })
-        end,
-        desc = "Format buffer",
-      }
-    }
+      },
+    },
   },
 
   {
