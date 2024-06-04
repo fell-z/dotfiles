@@ -53,6 +53,7 @@ link_file_in_home "zshenv"
 link_dir_in_XDG_CONFIG "git"
 link_dir_in_XDG_CONFIG "alacritty"
 link_dir_in_XDG_CONFIG "rubocop"
+link_dir_in_XDG_CONFIG "solargraph"
 link_dir_in_XDG_CONFIG "nvim"
 
 if exists i3; then

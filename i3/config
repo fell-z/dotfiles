@@ -199,6 +199,9 @@ gaps inner 6
 for_window [class="firefoxdeveloperedition" window_role="toolbox"] \
 floating enable, resize set 940 540
 
+for_window [window_role="GtkFileChooserDialog"] \
+resize set 940 540
+
 #set $border #24283b
 #set $background #3e4465
 #set $foreground #edf0fc
