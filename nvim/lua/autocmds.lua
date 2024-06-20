@@ -2,31 +2,31 @@ local langs = {
   c = {
     augroup = vim.api.nvim_create_augroup("C", { clear = true }),
     pattern = { "*.c", "*.h" },
-    config = function ()
+    config = function()
       vim.opt.shiftwidth = 4
     end,
   },
   cpp = {
     augroup = vim.api.nvim_create_augroup("Cpp", { clear = true }),
     pattern = { "*.cpp", "*.hpp" },
-    config = function ()
+    config = function()
       vim.opt.shiftwidth = 4
     end,
   },
   python = {
     augroup = vim.api.nvim_create_augroup("Python", { clear = true }),
     pattern = { "*.py", "*.pyw" },
-    config = function ()
+    config = function()
       vim.opt.shiftwidth = 4
     end,
   },
   ruby = {
     augroup = vim.api.nvim_create_augroup("Ruby", { clear = true }),
     pattern = { "*.rb" },
-    config = function ()
+    config = function()
       require("nvim-highlight-colors").turnOff()
     end,
-  }
+  },
 }
 
 for _lang, settings in pairs(langs) do

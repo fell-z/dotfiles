@@ -77,3 +77,5 @@ SAVEHIST=1000
 
 source "$ZSH/key-bindings.zsh"
 source "$ZSH/completion.zsh"
+
+autoload -Uz compinit && compinit

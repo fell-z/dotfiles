@@ -29,5 +29,5 @@ vim.opt.cursorline = true
 vim.opt.showmode = true
 vim.opt.title = true
 
-vim.opt.guicursor = "n-c-i-ci-r-cr-o:hor10,v-ve:block,a:blinkwait700-blinkoff400-blinkon250-Cursor,sm:block-blinkwait175-blinkoff150-blinkon175"
-
+vim.opt.guicursor =
+  "n-c-i-ci-r-cr-o:hor10,v-ve:block,a:blinkwait700-blinkoff400-blinkon250-Cursor,sm:block-blinkwait175-blinkoff150-blinkon175"

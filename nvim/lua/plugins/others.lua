@@ -1,7 +1,6 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-lua/popup.nvim", lazy = true },
-  { "gpanders/editorconfig.nvim", lazy = true },
   { "andweeb/presence.nvim", lazy = true },
 
   {
@@ -28,15 +27,16 @@ return {
     opts = {},
     keys = {
       {
-        "<leader>ft", "<cmd>TodoTelescope<cr>",
+        "<leader>ft",
+        "<cmd>TodoTelescope<cr>",
         mode = "n",
-        desc = "Find todo comments (telescope)"
-      }
-    }
+        desc = "Find todo comments (telescope)",
+      },
+    },
   },
 
   {
-	  "rcarriga/nvim-notify",
+    "rcarriga/nvim-notify",
     opts = {
       stages = "static",
       timeout = 3000,
@@ -50,14 +50,14 @@ return {
         vim.api.nvim_win_set_config(win, { zindex = 100 })
       end,
     },
-    init = function ()
+    init = function()
       vim.notify = require("notify")
     end,
     keys = {
       {
         "<leader>xn",
         function()
-          require("notify").dismiss({ silent = true, pending = true })
+          require("notify").dismiss { silent = true, pending = true }
         end,
         desc = "Dismiss All Notifications",
       },

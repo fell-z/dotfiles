@@ -1,42 +1,46 @@
 return {
   {
     "folke/trouble.nvim",
+    event = "VeryLazy",
     opts = { use_diagnostic_signs = true },
     cmd = "Trouble",
     dependencies = { "kyazdani42/nvim-web-devicons" },
     keys = {
       {
-        "<leader>dd", "<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>",
+        "<leader>dd",
+        "<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>",
         mode = "n",
-        desc = "See buffer diagnostics (Trouble)"
+        desc = "See buffer diagnostics (Trouble)",
       },
       {
-        "<leader>ds", "<cmd>Trouble lsp_document_symbols toggle focus=true win.position=right<cr>",
+        "<leader>ds",
+        "<cmd>Trouble lsp_document_symbols toggle focus=true win.position=right<cr>",
         mode = "n",
-        desc = "See symbols (Trouble)"
+        desc = "See symbols (Trouble)",
       },
     },
   },
 
   {
     "mfussenegger/nvim-lint",
+    event = "VeryLazy",
     opts = {
       events = { "BufWritePost", "BufReadPost", "InsertLeave", "TextChanged" },
       linters_by_ft = {
-        c = { "clangtidy" },
-        css = { "stylelint" },
+        --- css = { "stylelint" },
         html = { "htmlhint" },
-        python = { "ruff", "pyre" },
+        javascript = { "eslint_d" },
+        python = { "ruff" },
         ruby = { "rubocop" },
-        sh = { "shellcheck" }
-      }
+        sh = { "shellcheck" },
+      },
     },
-    config = function (_, opts)
+    config = function(_, opts)
       local lint = require("lint")
 
-      local debounce = function (ms, fn)
+      local debounce = function(ms, fn)
         local timer = vim.uv.new_timer()
-        return function ()
+        return function()
           local argv = {}
           timer:start(ms, 0, function()
             timer:stop()
@@ -49,17 +53,18 @@ return {
 
       vim.api.nvim_create_autocmd(opts.events, {
         group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
-        callback = debounce(100, lint.try_lint)
+        callback = debounce(100, lint.try_lint),
       })
-    end
+    end,
   },
 
   {
     "stevearc/conform.nvim",
-    config = function ()
+    event = "VeryLazy",
+    config = function()
       local web_fmts = { { "prettierd", "prettier" } }
 
-      require("conform").setup {
+      require("conform").setup({
         formatters_by_ft = {
           html = web_fmts,
           css = web_fmts,
@@ -71,20 +76,21 @@ return {
           ruby = { "rubocop" },
           python = { "ruff_format", "ruff_organize_imports" },
           sh = { "shfmt" },
-        }
-      }
+        },
+      })
     end,
     keys = {
       {
         "<leader>ex",
-        function ()
+        function()
           require("conform").format({ async = true, lsp_fallback = true })
         end,
         desc = "Format buffer (conform)",
-      }
+      },
     },
   },
 
+  -- stylua: ignore start
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -97,6 +103,7 @@ return {
       { "<C-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
+  -- stylua: ignore end
 
   {
     "lewis6991/gitsigns.nvim",
@@ -119,44 +126,56 @@ return {
 
   {
     "brenoprata10/nvim-highlight-colors",
+    ft = { "css", "less", "sass", "scss", "html", "javascriptreact", "typescriptreact" },
     opts = {},
   },
 
   {
     "olrtg/nvim-emmet",
-    ft = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "pug", "typescriptreact" },
+    ft = {
+      "css",
+      "eruby",
+      "html",
+      "javascript",
+      "javascriptreact",
+      "less",
+      "sass",
+      "scss",
+      "pug",
+      "typescriptreact",
+    },
     keys = {
       {
         "<leader>xe",
-        function ()
+        function()
           require("nvim-emmet").wrap_with_abbreviation()
         end,
         mode = { "n", "v" },
-        desc = "Emmet: Wrap with abbreviation"
+        desc = "Emmet: Wrap with abbreviation",
       },
     },
   },
 
   {
     "windwp/nvim-autopairs",
-    config = function ()
+    config = function()
       local npairs_working, npairs = pcall(require, "nvim-autopairs")
       if not npairs_working then
         return
       end
 
-
-      npairs.setup {
+      npairs.setup({
         check_ts = true,
         disable_filetype = { "TelescopePrompt" },
-      }
+      })
 
-      local cmp_npairs = require "nvim-autopairs.completion.cmp"
+      local cmp_npairs = require("nvim-autopairs.completion.cmp")
       local cmp_working, cmp = pcall(require, "cmp")
       if not cmp_working then
         return
       end
 
+      -- stylua: ignore start
       cmp.event:on(
         "confirm_done",
         cmp_npairs.on_confirm_done()
@@ -192,6 +211,7 @@ return {
             end)
             :use_key(']')
       }
-    end
+      -- stylua: ignore end
+    end,
   },
 }

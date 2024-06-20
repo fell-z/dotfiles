@@ -1,6 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    event = "VeryLazy",
     branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -12,25 +13,29 @@ return {
       },
       {
         "stevearc/aerial.nvim",
-        config = function ()
-          require("aerial").setup({
+        config = function()
+          require("aerial").setup {
             backends = {
               ["_"] = { "treesitter", "lsp" },
               typescript = { "lsp", "treesitter" },
-            }
-          })
-        end
-      }
+            },
+          }
+        end,
+      },
     },
-    config = function ()
+    config = function()
       require("telescope").load_extension("aerial")
       require("telescope").load_extension("fzf")
     end,
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n", desc = "Find files (telescope)" },
+      {
+        "<leader>ff",
+        "<cmd>Telescope find_files<cr>",
+        mode = "n",
+        desc = "Find files (telescope)",
+      },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", mode = "n", desc = "Find buffers (telescope)" },
-      { "<leader>fs", "<cmd>Telescope aerial<cr>", mode = "n", desc = "Find symbols (telescope)" }
+      { "<leader>fs", "<cmd>Telescope aerial<cr>", mode = "n", desc = "Find symbols (telescope)" },
     },
-    event = "VeryLazy"
-  }
+  },
 }

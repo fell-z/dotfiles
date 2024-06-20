@@ -1,18 +1,34 @@
-local vim = vim
-local os = require("os")
+vim.cmd([[colorscheme tokyonight-storm]])
 
-local time = tonumber(os.date("%H"))
-if time < 16 and time > 6 then
-  vim.cmd("colorscheme catppuccin-latte")
-else
-  vim.cmd("colorscheme tokyonight-storm")
+local themes = {
+  "catppuccin-latte",
+  "catppuccin-macchiato",
+  "tokyonight-storm",
+  "tokyonight-day",
+  "everforest",
+  "kanagawa-wave",
+  "kanagawa-dragon",
+  "gruvbox",
+  "patana"
+}
+
+local switchTheme = function()
+  vim.ui.select(themes, { prompt = "Select theme to switch" }, function(choice)
+    if choice ~= nil then
+      vim.cmd([[colorscheme ]] .. choice)
+    end
+  end)
 end
+
+require("which-key").register({
+  ["st"] = { switchTheme, "Switch theme" },
+}, { prefix = "<leader>", mode = "n" })
 
 require("lualine").setup {
   options = {
     disabled_filetypes = { "neo-tree" },
     section_separators = { left = "", right = "" },
-    component_separators = "|"
+    component_separators = "|",
   },
   sections = {
     lualine_x = {
@@ -20,7 +36,7 @@ require("lualine").setup {
     },
     lualine_y = {
       { "fileformat", icons_enabled = false },
-      { "filesize" }
+      { "filesize" },
     },
   },
   tabline = {
@@ -30,6 +46,6 @@ require("lualine").setup {
   extensions = {
     "aerial",
     "man",
-    "trouble"
-  }
+    "trouble",
+  },
 }

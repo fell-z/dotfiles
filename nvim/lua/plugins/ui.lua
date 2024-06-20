@@ -3,41 +3,54 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    config = function ()
+    config = function()
       require("tokyonight").setup {
-        on_highlights = function (hl, c)
+        on_highlights = function(hl, c)
           hl.CursorLineNr = { fg = c.dark5 }
-        end
+        end,
       }
-    end
+    end,
   },
   { "catppuccin/nvim", name = "catppuccin", lazy = true },
+  { "neanias/everforest-nvim", version = false, lazy = true },
+  { "rebelot/kanagawa.nvim", lazy = true },
+  { "cvigilv/patana.nvim", opts = {}, lazy = true },
+  {
+    "ellisonleao/gruvbox.nvim",
+    opts = {
+      bold = false,
+      contrast = "soft",
+    },
+    lazy = true,
+  },
 
   {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     dependencies = {
       { "kyazdani42/nvim-web-devicons", lazy = true },
-    }
+    },
   },
 
   {
     "lukas-reineke/indent-blankline.nvim",
-    config = function ()
+    event = "VeryLazy",
+    config = function()
       require("ibl").setup {
         indent = { char = "│" },
-        scope = { enabled = false }
+        scope = { enabled = false },
       }
-    end
+    end,
   },
 
   {
-    'stevearc/dressing.nvim',
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
     opts = {},
   },
 
   {
     "goolord/alpha-nvim",
-    config = function ()
+    config = function()
       local alpha = require("alpha")
       local dashboard = require("alpha.themes.dashboard")
 
@@ -52,10 +65,10 @@ return {
         dashboard.button("e", "󰈔 New file", ":ene<CR>"),
         dashboard.button("SPC f f", "󰱼 Find files"),
         dashboard.button("SPC f r", "󱋡 Recent files", ":Telescope oldfiles<CR>"),
-        dashboard.button("q", "󰩈 Quit", ":qa<CR>")
+        dashboard.button("q", "󰩈 Quit", ":qa<CR>"),
       }
 
       alpha.setup(dashboard.config)
-    end
+    end,
   },
 }
