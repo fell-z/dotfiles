@@ -74,6 +74,7 @@ return {
           cpp = { "clang-format" },
           lua = { "stylua" },
           ruby = { "rubocop" },
+          eruby = { "erb_format" },
           python = { "ruff_format", "ruff_organize_imports" },
           sh = { "shfmt" },
         },
