@@ -1,30 +1,5 @@
 return {
   {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
-    build = ":MasonUpdate",
-    opts = {},
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-      "neovim/nvim-lspconfig",
-    },
-  },
-
-  {
-    "williamboman/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = {
-        "basedpyright",
-        "bashls",
-        "clangd",
-        "lua_ls",
-        "solargraph",
-        "tsserver",
-      },
-    },
-  },
-
-  {
     "neovim/nvim-lspconfig",
     config = function()
       local lsp = require("lspconfig")
@@ -97,6 +72,9 @@ return {
       lsp.solargraph.setup {
         capabilities = capabilities,
         single_file_support = true,
+      }
+      lsp.sqls.setup {
+        capabilities = capabilities,
       }
       lsp.texlab.setup {
         settings = {
