@@ -14,6 +14,26 @@ return {
   },
 
   {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "olimorris/neotest-rspec",
+    },
+    config = function()
+      require("neotest").setup {
+        adapters = {
+          require("neotest-rspec"),
+        },
+      }
+    end,
+    -- stylua: ignore
+    keys = {
+      { "<leader>dtn", function() require("neotest").run.run() end, desc = "Run current hovered test" },
+      { "<leader>dtf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run current test file" },
+      { "<leader>dts", function() require("neotest").run.run(vim.fn.getcwd()) end, desc = "Run test suite (current directory)" }
+    },
+  },
+
+  {
     "folke/ts-comments.nvim",
     opts = {},
     event = "VeryLazy",
@@ -65,31 +85,30 @@ return {
   },
 
   {
+    "tpope/vim-rails",
+    ft = "ruby",
+  },
+
+  {
     "folke/lazydev.nvim",
-    event = "VeryLazy",
     ft = "lua", -- only load on lua files
     opts = {
       library = {
-        -- Library items can be absolute paths
-        -- "~/projects/my-awesome-lib",
-        -- Or relative, which means they will be resolved as a plugin
-        -- "LazyVim",
-        -- When relative, you can also provide a path to the library in the plugin dir
-        "luvit-meta/library", -- see below
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
       },
     },
-    dependencies = {
-      { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
-      { -- optional completion source for require statements and module annotations
-        "hrsh7th/nvim-cmp",
-        opts = function(_, opts)
-          opts.sources = opts.sources or {}
-          table.insert(opts.sources, {
-            name = "lazydev",
-            group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-          })
-        end,
-      },
-    },
+  },
+  { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+  { -- optional completion source for require statements and module annotations
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        name = "lazydev",
+        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      })
+    end,
   },
 }
