@@ -5,6 +5,7 @@ local config = {
     "cpp",
     "css",
     "diff",
+    "embedded_template",
     "gdscript",
     "git_config",
     "git_rebase",
@@ -29,14 +30,14 @@ local config = {
     "regex",
     "ruby",
     "rust",
-    -- "sql",
+    "sql",
     "toml",
     "tsx",
     "typescript",
     "vim",
     "vimdoc",
     "xml",
-    "yaml"
+    "yaml",
   },
   sync_install = false,
   ignore_install = { "" },
@@ -45,10 +46,13 @@ local config = {
     disable = { "" },
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true, disable = { "yaml", "ruby", "python", "c", "java", "lua", "css", "html" } },
+  indent = {
+    enable = true,
+    disable = { "yaml", "ruby", "python", "c", "cpp", "java", "lua", "css", "sh", "html" },
+  },
   endwise = {
     enable = true,
-  }
+  },
 }
 
 return {
@@ -62,8 +66,8 @@ return {
       },
       "RRethy/nvim-treesitter-endwise",
     },
-    config = function ()
+    config = function()
       require("nvim-treesitter.configs").setup(config)
-    end
+    end,
   },
 }
