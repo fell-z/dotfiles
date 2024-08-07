@@ -1,16 +1,15 @@
 local wk = require("which-key")
 
-wk.register({
-  ["e"] = { name = "+edit" },
-  ["f"] = { name = "+find" },
-  ["d"] = { name = "+trouble" },
-  ["x"] = { name = "+others" },
-  ["s"] = { name = "+switch" },
+wk.add({
+  { "<leader>e", group = "edit" },
+  { "<leader>f", group = "find" },
+  { "<leader>x", group = "others" },
+  { "<leader>s", group = "switch" },
+  { "<leader>d", group = "trouble" },
+  { "<leader>dt", group = "test" },
 
-  ["["] = { "<cmd>bp<cr>", "Previous buffer" },
-  ["]"] = { "<cmd>bn<cr>", "Next buffer" },
-  ["t"] = { "<cmd>terminal<cr>", "Open a terminal buffer" },
-}, { prefix = "<leader>", mode = "n" })
-
--- this mapping doesn't work as expected with which-key, don't know how to fix. Strange
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
+  { "<leader>[", "<cmd>bp<cr>", desc = "Previous buffer" },
+  { "<leader>]", "<cmd>bn<cr>", desc = "Next buffer" },
+  { "<leader>t", "<cmd>terminal<cr>", desc = "Open a terminal buffer" },
+  { "<Esc>", "<C-\\><C-n>", mode = "t", noremap = true },
+})

@@ -27,9 +27,12 @@ return {
     end,
     -- stylua: ignore
     keys = {
-      { "<leader>dtn", function() require("neotest").run.run() end, desc = "Run current hovered test" },
-      { "<leader>dtf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run current test file" },
-      { "<leader>dts", function() require("neotest").run.run(vim.fn.getcwd()) end, desc = "Run test suite (current directory)" }
+      { "<leader>dtn", function() require("neotest").run.run() end, desc = "Run current hovered test (Neotest)" },
+      { "<leader>dtf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run current test file (Neotest)" },
+      {
+        "<leader>dts", function() require("neotest").run.run(vim.fn.getcwd()) end,
+      	desc = "Run test suite (current directory) (Neotest)"
+      }
     },
   },
 
