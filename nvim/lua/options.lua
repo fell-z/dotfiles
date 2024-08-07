@@ -7,27 +7,27 @@ end
 vim.g.ruby_operators = 1
 vim.g.ruby_pseudo_operators = 1
 
-vim.opt.completeopt = "menu,menuone,preview,noselect"
+vim.opt.completeopt = { "menu", "menuone", "preview", "noselect" }
 
-vim.opt.foldenable = true
-vim.opt.foldmethod = "manual"
+vim.o.foldenable = true
+vim.o.foldmethod = "manual"
 
-vim.opt.textwidth = 100
-vim.opt.wrap = true
+vim.o.textwidth = 100
+vim.o.wrap = true
 
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
+vim.o.expandtab = true
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
 
-vim.opt.scrolloff = 12
+vim.o.scrolloff = 12
 
-vim.opt.numberwidth = 2
-vim.opt.signcolumn = "yes"
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
-vim.opt.showmode = true
-vim.opt.title = true
+vim.o.numberwidth = 2
+vim.o.signcolumn = "yes"
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.o.showmode = true
+vim.o.title = true
 
-vim.opt.guicursor =
+vim.o.guicursor =
   "n-c-i-ci-r-cr-o:hor10,v-ve:block,a:blinkwait700-blinkoff400-blinkon250-Cursor,sm:block-blinkwait175-blinkoff150-blinkon175"

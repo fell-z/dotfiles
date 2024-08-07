@@ -3,21 +3,24 @@ local langs = {
     augroup = vim.api.nvim_create_augroup("C", { clear = true }),
     pattern = { "*.c", "*.h" },
     config = function()
-      vim.opt.shiftwidth = 4
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.bo[bufnr].shiftwidth = 4
     end,
   },
   cpp = {
     augroup = vim.api.nvim_create_augroup("Cpp", { clear = true }),
     pattern = { "*.cpp", "*.hpp" },
     config = function()
-      vim.opt.shiftwidth = 4
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.bo[bufnr].shiftwidth = 4
     end,
   },
   python = {
     augroup = vim.api.nvim_create_augroup("Python", { clear = true }),
     pattern = { "*.py", "*.pyw" },
     config = function()
-      vim.opt.shiftwidth = 4
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.bo[bufnr].shiftwidth = 4
     end,
   },
   ruby = {
