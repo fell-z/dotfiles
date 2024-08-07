@@ -9,7 +9,12 @@ local themes = {
   "kanagawa-wave",
   "kanagawa-dragon",
   "gruvbox",
-  "patana"
+  "patana",
+  "zenbones",
+  "zenwritten",
+  "seoulbones",
+  "duckbones",
+  "kanagawabones",
 }
 
 local switchTheme = function()
@@ -20,9 +25,9 @@ local switchTheme = function()
   end)
 end
 
-require("which-key").register({
-  ["st"] = { switchTheme, "Switch theme" },
-}, { prefix = "<leader>", mode = "n" })
+require("which-key").add {
+  { "<leader>st", switchTheme, desc = "Switch theme" },
+}
 
 require("lualine").setup {
   options = {
