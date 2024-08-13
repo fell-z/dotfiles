@@ -40,12 +40,9 @@ return {
       lsp.emmet_language_server.setup {
         capabilities = capabilities,
       }
-      --[[
       lsp.gdscript.setup {
         capabilities = capabilities,
       }
-      ]]
-      --
       lsp.html.setup {
         capabilities = capabilities,
         cmd = { "vscode-html-language-server", "--stdio" },

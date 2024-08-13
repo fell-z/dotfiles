@@ -62,7 +62,17 @@ return {
     dependencies = {
       {
         "windwp/nvim-ts-autotag",
-        opts = {},
+        config = function()
+          require("nvim-ts-autotag").setup {
+            per_filetype = {
+              ["eruby"] = {
+                enable_close = true,
+                enable_rename = true,
+                enable_close_on_slash = false,
+              }
+            }
+          }
+        end,
       },
       "RRethy/nvim-treesitter-endwise",
     },
