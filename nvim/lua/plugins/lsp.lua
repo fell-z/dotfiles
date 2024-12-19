@@ -13,7 +13,7 @@ return {
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      lsp.asm_lsp.setup {
+      lsp.arduino_language_server.setup {
         capabilities = capabilities,
       }
       lsp.basedpyright.setup {
@@ -29,7 +29,7 @@ return {
           "--clang-tidy",
           "--completion-style=detailed",
           "--function-arg-placeholders",
-        }
+        },
       }
       lsp.csharp_ls.setup {
         capabilities = capabilities,
@@ -40,12 +40,12 @@ return {
       lsp.emmet_language_server.setup {
         capabilities = capabilities,
       }
-      lsp.gdscript.setup {
-        capabilities = capabilities,
-      }
       lsp.html.setup {
         capabilities = capabilities,
         cmd = { "vscode-html-language-server", "--stdio" },
+      }
+      lsp.jdtls.setup {
+        capabilities = capabilities,
       }
       lsp.lua_ls.setup {
         capabilities = capabilities,
@@ -86,12 +86,6 @@ return {
           },
         },
       }
-      --[[
-      lsp.tsserver.setup {
-        capabilities = capabilities,
-        single_file_support = true,
-      }
-      ]]--
       lsp.vtsls.setup {
         capabilities = capabilities,
       }
