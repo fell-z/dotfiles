@@ -19,7 +19,7 @@ return {
         "clangd",
         "lua_ls",
         "solargraph",
-        "tsserver",
+        "vtsls",
       },
     },
   },
