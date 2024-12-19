@@ -78,4 +78,6 @@ SAVEHIST=1000
 source "$ZSH/key-bindings.zsh"
 source "$ZSH/completion.zsh"
 
+FPATH=~/.rbenv/completions:"$FPATH"
+
 autoload -Uz compinit && compinit
