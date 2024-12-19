@@ -1,10 +1,3 @@
--- I have no idea of how this work step by step,
--- but i know that's necessary for the 'Super Tab' work better
-local check_backspace = function ()
-  local col = vim.fn.col "." - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-end
-
 local trunc_completion_item = function(_, vim_item)
   local ABBR_MAX_WIDTH = 20
   local MENU_MAX_WIDTH = 25
@@ -24,23 +17,16 @@ local trunc_completion_item = function(_, vim_item)
   return vim_item
 end
 
-local nvim_cmp_config = function ()
+local nvim_cmp_config = function()
   local cmp = require("cmp")
   local lspkind = require("lspkind")
-  local luasnip = require("luasnip")
 
-  cmp.setup({
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end
-    },
-
+  cmp.setup {
     formatting = {
-      format = lspkind.cmp_format({
+      format = lspkind.cmp_format {
         mode = "symbol_text",
-        before = trunc_completion_item
-      }),
+        before = trunc_completion_item,
+      },
     },
 
     window = {
@@ -54,79 +40,65 @@ local nvim_cmp_config = function ()
       },
     },
 
+    sources = cmp.config.sources {
+      { name = "nvim_lsp" },
+      { name = "nvim_lua" },
+      { name = "nvim_lsp_signature_help" },
+      { name = "path" },
+      { name = "buffer" },
+      { name = "snippets" },
+    },
+
     mapping = {
-      ['<C-,>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i' }),
-      ['<C-.>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i' }),
-      -- ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i' }),
-      ['<C-;>'] = cmp.mapping({
-          i = cmp.mapping.abort(),
-          c = cmp.mapping.close(),
-        }),
-      ['<C-/>'] = cmp.mapping.confirm({ select = true }),
-      ['<Tab>'] = function(fallback)
+      ["<C-´>"] = cmp.mapping(cmp.mapping.scroll_docs(-3), { "i" }),
+      ["<C-~>"] = cmp.mapping(cmp.mapping.scroll_docs(3), { "i" }),
+      ["<C-;>"] = cmp.mapping { i = cmp.mapping.abort() },
+      ["<C-/>"] = cmp.mapping.confirm { select = true },
+      ["<C-.>"] = function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expandable() then
-          luasnip.expand()
-        elseif check_backspace() then
-          fallback()
+        elseif vim.snippet.active { direction = 1 } then
+          vim.schedule(function()
+            vim.snippet.jump(1)
+          end)
         else
           fallback()
         end
       end,
-      ['<S-Tab>'] = function(fallback)
+      ["<C-,>"] = function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
+        elseif vim.snippet.active { direction = -1 } then
+          vim.schedule(function()
+            vim.snippet.jump(-1)
+          end)
         else
           fallback()
         end
       end,
     },
-    sources = cmp.config.sources({
-      { name = "nvim_lsp" },
-      { name = "luasnip" },
-      { name = "path" },
-      { name = "buffer" },
-      { name = "nvim_lua" },
-      { name = "nvim_lsp_signature_help" }
-    })
-  })
+  }
 end
 
 return {
-  -- Autocompletion system
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
       "onsails/lspkind.nvim",
-    },
-    config = nvim_cmp_config
-  },
-
-  -- Snippet engine
-  {
-    "L3MON4D3/LuaSnip",
-    build = "make install_jsregexp",
-    dependencies = {
       {
-        "rafamadriz/friendly-snippets",
-        config = function ()
-          require("luasnip.loaders.from_vscode").lazy_load()
-        end
-      },
-      {
-        "nvim-cmp",
-        dependencies = {
-          "saadparwaiz1/cmp_luasnip",
+        "garymjr/nvim-snippets",
+        opts = {
+          friendly_snippets = true,
         },
-      }
-    }
-  }
+        dependencies = { "rafamadriz/friendly-snippets" },
+      },
+    },
+    config = nvim_cmp_config,
+  },
 }
