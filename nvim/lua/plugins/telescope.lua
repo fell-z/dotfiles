@@ -34,6 +34,12 @@ return {
         mode = "n",
         desc = "Find files (telescope)",
       },
+      {
+        "<leader>fr",
+        "<cmd>Telescope oldfiles<cr>",
+        mode = "n",
+        desc = "Find recent files (telescope)",
+      },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", mode = "n", desc = "Find buffers (telescope)" },
       { "<leader>fs", "<cmd>Telescope aerial<cr>", mode = "n", desc = "Find symbols (telescope)" },
     },
