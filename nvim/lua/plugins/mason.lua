@@ -3,7 +3,7 @@ return {
     "williamboman/mason.nvim",
     cmd = "Mason",
     build = ":MasonUpdate",
-    opts = {},
+    config = function() end,
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
@@ -12,6 +12,7 @@ return {
 
   {
     "williamboman/mason-lspconfig.nvim",
+    config = function() end,
     opts = {
       ensure_installed = {
         "basedpyright",
