@@ -1,7 +1,62 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    config = function()
+    opts = {
+      servers = {
+        arduino_language_server = {},
+        basedpyright = {},
+        bashls = {},
+        csharp_ls = {},
+        cssls = {},
+        clangd = {
+          cmd = {
+            "clangd",
+            "--clang-tidy",
+            "--completion-style=detailed",
+            "--function-arg-placeholders",
+          },
+        },
+        emmet_language_server = {},
+        html = {},
+        jdtls = {},
+        lua_ls = {
+          settings = {
+            Lua = {
+              workspace = {
+                checkThirdParty = "Ask",
+                library = {
+                  "/usr/lib/lua/5.4/",
+                },
+              },
+            },
+          },
+        },
+        pyre = {},
+        rust_analyzer = {},
+        sqls = {},
+        solargraph = {
+          single_file_support = true,
+        },
+        texlab = {
+          settings = {
+            texlab = {
+              build = {
+                executable = "tectonic",
+                args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
+              },
+              chktex = {
+                onEdit = true,
+              },
+            },
+          },
+        },
+        vtsls = {},
+      },
+    },
+    config = function(_, opts)
+      require("mason").setup()
+      require("mason-lspconfig").setup()
+
       local lsp = require("lspconfig")
 
       -- Set the gutter diagnostics icons
@@ -11,84 +66,22 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl, linehl = "", numhl = "" })
       end
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local servers = opts.servers
+      local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      local has_blink, blink = pcall(require, "blink.cmp")
+      local capabilities = vim.tbl_deep_extend(
+        "force",
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        has_cmp and cmp_nvim_lsp.default_capabilities() or {},
+        has_blink and blink.get_lsp_capabilities() or {},
+        opts.capabilities or {}
+      )
 
-      lsp.arduino_language_server.setup {
-        capabilities = capabilities,
-      }
-      lsp.basedpyright.setup {
-        capabilities = capabilities,
-      }
-      lsp.bashls.setup {
-        capabilities = capabilities,
-      }
-      lsp.clangd.setup {
-        capabilities = capabilities,
-        cmd = {
-          "clangd",
-          "--clang-tidy",
-          "--completion-style=detailed",
-          "--function-arg-placeholders",
-        },
-      }
-      lsp.csharp_ls.setup {
-        capabilities = capabilities,
-      }
-      lsp.cssls.setup {
-        capabilities = capabilities,
-      }
-      lsp.emmet_language_server.setup {
-        capabilities = capabilities,
-      }
-      lsp.html.setup {
-        capabilities = capabilities,
-        cmd = { "vscode-html-language-server", "--stdio" },
-      }
-      lsp.jdtls.setup {
-        capabilities = capabilities,
-      }
-      lsp.lua_ls.setup {
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            workspace = {
-              checkThirdParty = "Ask",
-              library = {
-                "/usr/lib/lua/5.4/",
-              },
-            },
-          },
-        },
-      }
-      lsp.rust_analyzer.setup {
-        capabilities = capabilities,
-      }
-      lsp.pyre.setup {
-        capabilities = capabilities,
-      }
-      lsp.solargraph.setup {
-        capabilities = capabilities,
-        single_file_support = true,
-      }
-      lsp.sqls.setup {
-        capabilities = capabilities,
-      }
-      lsp.texlab.setup {
-        settings = {
-          texlab = {
-            build = {
-              executable = "tectonic",
-              args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
-            },
-            chktex = {
-              onEdit = true,
-            },
-          },
-        },
-      }
-      lsp.vtsls.setup {
-        capabilities = capabilities,
-      }
+      for server, config in pairs(servers) do
+        config.capabilities = capabilities
+        lsp[server].setup(config)
+      end
     end,
   },
 }
