@@ -28,5 +28,6 @@ vim.cmd("filetype plugin indent on")
 
 require("options")
 require("keymaps")
-require("ui")
 require("autocmds")
+
+vim.cmd("colorscheme tokyonight-storm")
