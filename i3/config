@@ -50,7 +50,12 @@ tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec alacritty
-  bindsym $mod+i exec firefox
+
+# start an internet browser
+bindsym $mod+i exec firefox
+
+# start a calculator
+bindsym $mod+c exec qalculate-qt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -198,6 +203,9 @@ gaps inner 6
 
 for_window [class="firefoxdeveloperedition" window_role="toolbox"] \
 floating enable, resize set 940 540
+
+for_window [class="qalculate-qt"] \
+floating enable, resize set 540 540
 
 for_window [window_role="GtkFileChooserDialog"] \
 resize set 940 540
