@@ -53,12 +53,8 @@ mods = "Alt"
 hide_when_typing = true
 
 [window]
-dynamic_title = true
 opacity = 0.88
 title = "Terminal"
-
-[window.class]
-instance = "Alacritty Instance"
 
 [window.dimensions]
 columns = 105
