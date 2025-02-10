@@ -2,9 +2,8 @@ return {
   {
     "folke/trouble.nvim",
     event = "VeryLazy",
-    opts = { use_diagnostic_signs = true },
+    opts = {},
     cmd = "Trouble",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
     keys = {
       {
         "<leader>dd",
@@ -27,9 +26,10 @@ return {
     opts = {
       events = { "BufWritePost", "BufReadPost", "InsertLeave", "TextChanged" },
       linters_by_ft = {
-        --- css = { "stylelint" },
+        -- css = { "stylelint" },
         html = { "htmlhint" },
-        javascript = { "eslint_d" },
+        javascript = { "biomejs" },
+        -- javascript = { "eslint_d" },
         python = { "ruff" },
         ruby = { "rubocop" },
         sh = { "shellcheck" },
@@ -179,10 +179,12 @@ return {
 
       npairs.setup { check_ts = true }
 
-      require("cmp").event:on(
-        "confirm_done",
-        require("nvim-autopairs.completion.cmp").on_confirm_done()
-      )
+      local has_cmp, cmp = pcall(require, "cmp")
+      if not has_cmp then
+        return
+      end
+
+      cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
     end,
   },
 }
