@@ -1,7 +1,7 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-lua/popup.nvim", lazy = true },
-  { "andweeb/presence.nvim", lazy = true },
+  { "IogaMaster/neocord", event = "VeryLazy", opts = {} },
 
   {
     "folke/which-key.nvim",
