@@ -58,11 +58,11 @@ alias ls='ls --color=tty --group-directories-first'
 
 # Functions
 light_mode() {
-  sed -i -e "s/tokyonight-storm/catppuccin-latte/g" "$HOME/.config/alacritty/alacritty.toml"
+  sed -i -e "s/zenbones_dark/catppuccin-latte/g" "$HOME/.config/alacritty/alacritty.toml"
 }
 
 dark_mode() {
-  sed -i -e "s/catppuccin-latte/tokyonight-storm/g" "$HOME/.config/alacritty/alacritty.toml"
+  sed -i -e "s/catppuccin-latte/zenbones_dark/g" "$HOME/.config/alacritty/alacritty.toml"
 }
 
 reload_term() {
