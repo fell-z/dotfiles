@@ -201,8 +201,8 @@ bar {
 
 gaps inner 6
 
-for_window [class="firefoxdeveloperedition" window_role="toolbox"] \
-floating enable, resize set 940 540
+for_window [window_role="toolbox"] \
+floating enable, resize set 752 432
 
 for_window [class="qalculate-qt"] \
 floating enable, resize set 540 540
