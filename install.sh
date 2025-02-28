@@ -81,19 +81,10 @@ add_line_if_absent "$LINE" "$HOME/.zshenv"
 add_line_if_absent "$LINE" "$HOME/.bash_profile"
 
 link_dir_in_XDG_CONFIG "git"
-link_dir_in_XDG_CONFIG "alacritty"
 link_dir_in_XDG_CONFIG "rubocop"
 link_dir_in_XDG_CONFIG "solargraph"
 link_dir_in_XDG_CONFIG "nvim"
 link_dir_in_XDG_CONFIG "starship"
-
-if exists i3; then
-  link_dir_in_XDG_CONFIG "i3"
-  link_dir_in_XDG_CONFIG "i3status"
-  link_dir_in_XDG_CONFIG "rofi"
-else
-  echo "'i3' isn't installed. Skipping linking i3 config files"
-fi
 
 unset -f exists
 unset -f link_file_in_home
