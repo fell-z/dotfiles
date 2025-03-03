@@ -8,6 +8,14 @@ local langs = {
       vim.bo[bufnr].tabstop = 4
     end,
   },
+  markdown = {
+    group = vim.api.nvim_create_augroup("Markdown", { clear = true }),
+    pattern = { "*.md" },
+    callback = function()
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.bo[bufnr].textwidth = 0
+    end
+  },
   default = {
     group = vim.api.nvim_create_augroup("Default", { clear = true }),
     pattern = { "*" },
