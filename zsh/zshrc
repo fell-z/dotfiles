@@ -1,55 +1,19 @@
 #!/usr/bin/env zsh
 
 # Vars
-export ZSH="$HOME/.zsh"
-export ZSHRC="$HOME/.zshrc"
+EDITOR="nvim"
 
-export DOTFILES_ROOT="$HOME/.dotfiles"
+NVIM_DIR="$HOME/.config/nvim"
 
-export EDITOR="nvim"
+PYTHON_EXECUTABLE=$(which python3)
 
-export DEV_DIR="$HOME/Dev"
-
-export NVIM_DIR="$HOME/.config/nvim"
-export NVIMRC="$NVIM_DIR/init.lua"
-
-export PYTHON_EXECUTABLE=$(which python3)
-
-export DOTNET_CLI_UI_LANGUAGE=en
-
-# Plugins
-ZSH_SYNTAX_DIR="$ZSH/zsh-syntax-highlighting"
-if [[ -d "$ZSH_SYNTAX_DIR" ]]; then
-  source "$ZSH_SYNTAX_DIR/zsh-syntax-highlighting.zsh"
-else
-  echo "Warning: the zsh-syntax-highlighting plugin is not installed."
-fi
-
-ZSH_SUGGESTIONS_DIR="$ZSH/zsh-autosuggestions"
-if [[ -d "$ZSH_SUGGESTIONS_DIR" ]]; then
-  source "$ZSH_SUGGESTIONS_DIR/zsh-autosuggestions.zsh"
-else
-  echo "Warning: the zsh-autosuggestions plugin is not installed."
-fi
-
-# Prompt
-SPACESHIP_PROMPT_DIR="$ZSH/spaceship"
-if [[ -d "$SPACESHIP_PROMPT_DIR" ]]; then
-  export SPACESHIP_PROMPT_ADD_NEWLINE=false
-  export SPACESHIP_PROMPT_SEPARATE_LINE=true
-  export SPACESHIP_CHAR_SYMBOL=" "
-  export SPACESHIP_CHAR_SYMBOL_SECONDARY=" "
-  export SPACESHIP_RUBY_SYMBOL="󰴭 "
-
-  source "$SPACESHIP_PROMPT_DIR/spaceship.zsh"
-else
-  echo "Warning: the spaceship-prompt is not installed."
-fi
+## Others
+HISTFILE="$HOME/.histfile"
+HISTSIZE=1000
+SAVEHIST=1000
 
 # Alias
 alias py='python3'
-
-alias dev="cd \$DEV_DIR"
 
 alias clip='xclip -selection clipboard'
 
@@ -67,20 +31,43 @@ dark_mode() {
 }
 
 reload_term() {
-  source "$HOME/.zshrc"
   source "$HOME/.zshenv"
+  source "$HOME/.zshrc"
 }
 
-# Others
-HISTFILE="$HOME/.histfile"
-HISTSIZE=1000
-SAVEHIST=1000
+# Plugins
+ZSH="$HOME/.zsh"
+
+if [[ -d "$ZSH/zsh-syntax-highlighting" ]]; then
+  source "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+else
+  echo "Warning: the zsh-syntax-highlighting plugin is not installed."
+fi
+
+if [[ -d "$ZSH/zsh-autosuggestions" ]]; then
+  source "$ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh"
+else
+  echo "Warning: the zsh-autosuggestions plugin is not installed."
+fi
+
+# Prompt
+if [[ -d "$ZSH/spaceship" ]]; then
+  SPACESHIP_PROMPT_ADD_NEWLINE=false
+  SPACESHIP_PROMPT_SEPARATE_LINE=true
+  SPACESHIP_CHAR_SYMBOL=" "
+  SPACESHIP_CHAR_SYMBOL_SECONDARY=" "
+
+  source "$ZSH/spaceship/spaceship.zsh"
+else
+  echo "Warning: the spaceship-prompt is not installed."
+fi
 
 # Final commands
 for f in "$ZSH/autoload/"*; do
   source "$f"
 done
 
+DOTFILES_ROOT="$HOME/.dotfiles"
 [[ -s "$DOTFILES_ROOT/cli_tools/env" ]] && source "$DOTFILES_ROOT/cli_tools/env"
 
 autoload -Uz compinit && compinit

@@ -49,9 +49,8 @@ fi
 link_file_in_home "bashrc"
 link_file_in_home "vimrc" 
 link_file_in_home "zshrc"
-link_file_in_home "path"
 
-LINE='source "$HOME/.path"'
+LINE='source "$HOME/.dotfiles/zsh/path"'
 if [[ -e "$HOME/.zshenv" ]]; then
   if grep -q -x -F "$LINE" "$HOME/.zshenv"; then
     echo "'path' is already sourced in 'zshenv'."
