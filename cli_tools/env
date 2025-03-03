@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+[[ -d "$HOME/.deno" ]] && source "$HOME/.deno/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion" # it doesn't exist zsh completions, so use bash for both shells
+
+case "$SHELL" in
+  '/bin/bash' | '/usr/bin/bash')
+    [[ -d "$HOME/.deno" ]] && source "$HOME/.deno/completions/deno.bash"
+
+    [[ -d "$PYENV_ROOT" ]] && eval "$(pyenv init - bash)"
+
+    [[ -d "$RBENV_ROOT" ]] && eval "$(rbenv init - bash)"
+    ;;
+  '/bin/zsh' | '/usr/bin/zsh')
+    [[ -d "$HOME/.deno" ]] && source "$HOME/.deno/completions/deno.zsh"
+
+    [[ -d "$PYENV_ROOT" ]] && eval "$(pyenv init - zsh)"
+
+    [[ -d "$RBENV_ROOT" ]] && eval "$(rbenv init - zsh)"
+    export FPATH=~/.rbenv/completions:"$FPATH"
+    ;;
+esac

@@ -4,6 +4,8 @@
 export ZSH="$HOME/.zsh"
 export ZSHRC="$HOME/.zshrc"
 
+export DOTFILES_ROOT="$HOME/.dotfiles"
+
 export EDITOR="nvim"
 
 export DEV_DIR="$HOME/Dev"
@@ -14,13 +16,6 @@ export NVIMRC="$NVIM_DIR/init.lua"
 export PYTHON_EXECUTABLE=$(which python3)
 
 export DOTNET_CLI_UI_LANGUAGE=en
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-[[ -d "$PYENV_ROOT" ]] && eval "$(pyenv init -)"
-[[ -d "$RBENV_ROOT" ]] && eval "$(rbenv init - zsh)"
 
 # Plugins
 ZSH_SYNTAX_DIR="$ZSH/zsh-syntax-highlighting"
@@ -81,12 +76,11 @@ HISTFILE="$HOME/.histfile"
 HISTSIZE=1000
 SAVEHIST=1000
 
+# Final commands
 for f in "$ZSH/autoload/"*; do
   source "$f"
 done
 
-source "$HOME/.deno/completions/deno.zsh"
-
-FPATH=~/.rbenv/completions:"$FPATH"
+[[ -s "$DOTFILES_ROOT/cli_tools/env" ]] && source "$DOTFILES_ROOT/cli_tools/env"
 
 autoload -Uz compinit && compinit
