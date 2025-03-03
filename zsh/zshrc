@@ -15,21 +15,11 @@ SAVEHIST=1000
 # Alias
 alias py='python3'
 
-alias clip='xclip -selection clipboard'
-
 alias nv='nvim'
 
 alias ls='ls --color=tty --group-directories-first'
 
 # Functions
-light_mode() {
-  sed -i -e "s/zenbones_dark/catppuccin-latte/g" "$HOME/.config/alacritty/alacritty.toml"
-}
-
-dark_mode() {
-  sed -i -e "s/catppuccin-latte/zenbones_dark/g" "$HOME/.config/alacritty/alacritty.toml"
-}
-
 reload_term() {
   source "$HOME/.zshenv"
   source "$HOME/.zshrc"
