@@ -35,12 +35,13 @@ ZSH="$HOME/.zsh"
 if [[ ! -d "$ZSH" ]]; then
   echo "The '$ZSH' directory doesn't exist. Creating now..."
   mkdir -p "$ZSH"
+  mkdir -p "$ZSH/autoload"
 fi
 
-if [[ ! -L "$ZSH/completion.zsh" && ! -L "$ZSH/key-bindings.zsh" ]]; then
+if [[ ! -L "$ZSH/autoload/completion.zsh" && ! -L "$ZSH/autoload/key-bindings.zsh" ]]; then
   echo "'completion.zsh' and 'key-bindings.zsh' aren't linked. Linking now..."
-  ln -s "$ROOTDIR/zsh/zsh_dotdir/completion.zsh" "$ZSH/completion.zsh"
-  ln -s "$ROOTDIR/zsh/zsh_dotdir/key-bindings.zsh" "$ZSH/key-bindings.zsh"
+  ln -s "$ROOTDIR/zsh/zsh_dotdir/completion.zsh" "$ZSH/autoload/completion.zsh"
+  ln -s "$ROOTDIR/zsh/zsh_dotdir/key-bindings.zsh" "$ZSH/autoload/key-bindings.zsh"
 else
   echo "'completion.zsh' and 'key-bindings.zsh' are linked. Skipping..."
 fi

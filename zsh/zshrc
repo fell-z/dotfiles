@@ -81,8 +81,10 @@ HISTFILE="$HOME/.histfile"
 HISTSIZE=1000
 SAVEHIST=1000
 
-source "$ZSH/key-bindings.zsh"
-source "$ZSH/completion.zsh"
+for f in "$ZSH/autoload/"*; do
+  source "$f"
+done
+
 source "$HOME/.deno/completions/deno.zsh"
 
 FPATH=~/.rbenv/completions:"$FPATH"
