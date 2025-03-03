@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-if [[ -f "$HOME/.cargo/env" ]]; then
-  source "$HOME/.cargo/env"
-fi
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+[[ -f "$HOME/.deno/env" ]] && source "$HOME/.deno/env"
 
 export PATH=$PATH:$HOME/.local/bin
 
@@ -18,11 +18,4 @@ if [[ -d "$RBENV_ROOT" ]]; then
   export RBENV_ROOT
   export PATH=$PATH:$RBENV_ROOT/bin
   # path=("$path" "$RBENV_ROOT/bin")
-fi
-
-DENO_INSTALL="$HOME/.deno"
-if [[ -d "$DENO_INSTALL" ]]; then
-  export DENO_INSTALL
-  export PATH=$PATH:$DENO_INSTALL/bin
-  #path=("$path" "$DENO_INSTALL/bin")
 fi
