@@ -50,11 +50,11 @@ local nvim_cmp_config = function()
     },
 
     mapping = {
-      ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-3), { "i" }),
-      ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(3), { "i" }),
-      ["<C-;>"] = cmp.mapping { i = cmp.mapping.abort() },
-      ["<C-/>"] = cmp.mapping.confirm { select = true },
-      ["<C-.>"] = function(fallback)
+      ["<M-´>"] = cmp.mapping(cmp.mapping.scroll_docs(-3), { "i" }),
+      ["<M-~>"] = cmp.mapping(cmp.mapping.scroll_docs(3), { "i" }),
+      ["<M-;>"] = cmp.mapping { i = cmp.mapping.abort() },
+      ["<M-]>"] = cmp.mapping.confirm { select = true },
+      ["<M-.>"] = function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif vim.snippet.active { direction = 1 } then
@@ -65,7 +65,7 @@ local nvim_cmp_config = function()
           fallback()
         end
       end,
-      ["<C-,>"] = function(fallback)
+      ["<M-,>"] = function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif vim.snippet.active { direction = -1 } then
