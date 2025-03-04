@@ -31,6 +31,29 @@ link_dir_in_XDG_CONFIG () {
   fi
 }
 
+add_line_if_absent () {
+  LINE=$1
+  FILE=$2
+  FILENAME=$(basename "$FILE")
+
+  if [[ -e "$FILE" ]]; then
+    if grep -q -x -F "$LINE" "$FILE"; then
+      echo "'$LINE' is already sourced in '$FILENAME'."
+    else
+      echo "'$LINE' isn't sourced in '$FILENAME'."
+      echo "adding '$LINE' in '$FILENAME'."
+      echo "$LINE" >> "$FILE"
+    fi
+  else
+    echo "'$FILENAME' doesn't exist. Creating and adding '$LINE'."
+    {
+      echo '#!/bin/zsh'
+      echo
+      echo "$LINE"
+    } > "$FILE"
+  fi
+}
+
 ZSH="$HOME/.zsh"
 if [[ ! -d "$ZSH" ]]; then
   echo "The '$ZSH' directory doesn't exist. Creating now..."
@@ -47,26 +70,12 @@ else
 fi
 
 link_file_in_home "bashrc"
-link_file_in_home "vimrc" 
 link_file_in_home "zshrc"
+link_file_in_home "vimrc"
 
-LINE='source "$HOME/.dotfiles/zsh/path"'
-if [[ -e "$HOME/.zshenv" ]]; then
-  if grep -q -x -F "$LINE" "$HOME/.zshenv"; then
-    echo "'path' is already sourced in 'zshenv'."
-  else
-    echo "'path' isn't sourced in 'zshenv'."
-    echo "adding '$LINE' in 'zshenv'."
-    echo "$LINE" >> "$HOME/.zshenv"
-  fi
-else
-  echo "'zshenv' doesn't exist. Creating and adding '$LINE'."
-  {
-    echo '#!/usr/bin/env bash'
-    echo
-    echo "$LINE"
-  } >> "$HOME/.zshenv"
-fi
+LINE='source "$HOME/.dotfiles/shell/path"'
+add_line_if_absent "$LINE" "$HOME/.zshenv"
+add_line_if_absent "$LINE" "$HOME/.bash_profile"
 
 link_dir_in_XDG_CONFIG "git"
 link_dir_in_XDG_CONFIG "alacritty"
@@ -85,3 +94,4 @@ fi
 unset -f exists
 unset -f link_file_in_home
 unset -f link_dir_in_XDG_CONFIG
+unset -f add_line_if_absent
