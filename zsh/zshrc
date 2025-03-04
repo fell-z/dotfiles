@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 
 # Vars
-EDITOR="nvim"
+export EDITOR="nvim"
 
-NVIM_DIR="$HOME/.config/nvim"
+export NVIM_DIR="$HOME/.config/nvim"
 
-PYTHON_EXECUTABLE=$(which python3)
+export PYTHON_EXECUTABLE=$(which python3)
 
 ## Others
 HISTFILE="$HOME/.histfile"
