@@ -38,6 +38,10 @@ reload_term() {
 # Plugins
 ZSH="$HOME/.zsh"
 
+for f in "$ZSH/autoload/"*; do
+  source "$f"
+done
+
 if [[ -d "$ZSH/zsh-syntax-highlighting" ]]; then
   source "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 else
@@ -63,10 +67,6 @@ else
 fi
 
 # Final commands
-for f in "$ZSH/autoload/"*; do
-  source "$f"
-done
-
 DOTFILES_ROOT="$HOME/.dotfiles"
 # This loads rbenv and friends
 [[ -s "$DOTFILES_ROOT/shell/tools" ]] && source "$DOTFILES_ROOT/shell/tools"
