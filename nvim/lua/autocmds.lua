@@ -13,7 +13,9 @@ local langs = {
     pattern = { "*.md" },
     callback = function()
       local bufnr = vim.api.nvim_get_current_buf()
+      local winid = vim.api.nvim_get_current_win()
       vim.bo[bufnr].textwidth = 0
+      vim.wo[winid].wrap = false
     end
   },
   default = {

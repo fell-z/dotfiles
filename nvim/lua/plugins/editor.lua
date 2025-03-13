@@ -30,6 +30,7 @@ return {
         html = { "htmlhint" },
         javascript = { "biomejs" },
         -- javascript = { "eslint_d" },
+        markdown = { "markdownlint" },
         python = { "ruff" },
         ruby = { "rubocop" },
         sh = { "shellcheck" },
