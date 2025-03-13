@@ -55,15 +55,12 @@ else
 fi
 
 # Prompt
-if [[ -d "$ZSH/spaceship" ]]; then
-  SPACESHIP_PROMPT_ADD_NEWLINE=false
-  SPACESHIP_PROMPT_SEPARATE_LINE=true
-  SPACESHIP_CHAR_SYMBOL=" "
-  SPACESHIP_CHAR_SYMBOL_SECONDARY=" "
+if [[ -e "/usr/local/bin/starship" ]]; then
+  export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
-  source "$ZSH/spaceship/spaceship.zsh"
+  eval "$(starship init zsh)"
 else
-  echo "Warning: the spaceship-prompt is not installed."
+  echo "Warning: the starship prompt is not installed."
 fi
 
 # Final commands
