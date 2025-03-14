@@ -59,6 +59,9 @@ if [[ ! -d "$ZSH" ]]; then
   echo "The '$ZSH' directory doesn't exist. Creating now..."
   mkdir -p "$ZSH"
   mkdir -p "$ZSH/autoload"
+elif [[ ! -d "$ZSH/autoload" ]]; then
+  echo "The '$ZSH/autoload' directory doesn't exist. Creating now..."
+  mkdir -p "$ZSH/autoload"
 fi
 
 if [[ ! -L "$ZSH/autoload/completion.zsh" && ! -L "$ZSH/autoload/key-bindings.zsh" ]]; then
