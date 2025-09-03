@@ -58,6 +58,8 @@ local config = {
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    version = false,
+    lazy = false,
     build = ":TSUpdate",
     dependencies = {
       {
