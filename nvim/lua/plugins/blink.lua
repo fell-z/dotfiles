@@ -2,7 +2,7 @@ return {
   "saghen/blink.cmp",
   enabled = false,
   event = "InsertEnter",
-  version = "v0.*",
+  version = "v1.*",
   opts_extend = { "sources.default" },
   opts = {
     keymap = {
