@@ -13,7 +13,7 @@ return {
             "clangd",
             "--clang-tidy",
             "--completion-style=detailed",
-            "--function-arg-placeholders",
+            "--function-arg-placeholders=1",
           },
         },
         emmet_language_server = {},
@@ -58,14 +58,17 @@ return {
       require("mason").setup()
       require("mason-lspconfig").setup()
 
-      local lsp = require("lspconfig")
-
       -- Set the gutter diagnostics icons
-      local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, linehl = "", numhl = "" })
-      end
+      vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.HINT] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+          }
+        }
+      })
 
       local servers = opts.servers
       local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
@@ -81,7 +84,9 @@ return {
 
       for server, config in pairs(servers) do
         config.capabilities = capabilities
-        lsp[server].setup(config)
+        vim.lsp.config(server, config)
+
+        vim.lsp.enable(server)
       end
     end,
   },
