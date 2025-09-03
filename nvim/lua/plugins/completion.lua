@@ -50,8 +50,8 @@ local nvim_cmp_config = function()
     },
 
     mapping = {
-      ["<C-´>"] = cmp.mapping(cmp.mapping.scroll_docs(-3), { "i" }),
-      ["<C-~>"] = cmp.mapping(cmp.mapping.scroll_docs(3), { "i" }),
+      ["<C-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-3), { "i" }),
+      ["<C-]>"] = cmp.mapping(cmp.mapping.scroll_docs(3), { "i" }),
       ["<C-;>"] = cmp.mapping { i = cmp.mapping.abort() },
       ["<C-/>"] = cmp.mapping.confirm { select = true },
       ["<C-.>"] = function(fallback)
