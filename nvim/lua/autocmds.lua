@@ -1,4 +1,12 @@
 local langs = {
+  c = {
+    group = vim.api.nvim_create_augroup("C", { clear = true }),
+    pattern = { "*.c", "*.h" },
+    callback = function()
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.bo[bufnr].path = vim.o.path .. "include,"
+    end,
+  },
   python = {
     group = vim.api.nvim_create_augroup("Python", { clear = true }),
     pattern = { "*.py", "*.pyw" },
