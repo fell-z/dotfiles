@@ -58,7 +58,6 @@ local config = {
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false,
     lazy = false,
     build = ":TSUpdate",
     dependencies = {
@@ -77,6 +76,7 @@ return {
         end,
       },
       "RRethy/nvim-treesitter-endwise",
+      "OXY2DEV/markview.nvim",
     },
     config = function()
       require("nvim-treesitter.configs").setup(config)
