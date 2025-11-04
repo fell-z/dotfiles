@@ -56,8 +56,6 @@ return {
       },
     },
     config = function(_, opts)
-      local lsp = require("lspconfig")
-
       -- Set the gutter diagnostics icons
       vim.diagnostic.config({
         virtual_text = true,
