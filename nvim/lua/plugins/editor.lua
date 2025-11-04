@@ -13,7 +13,7 @@ return {
       },
       {
         "<leader>ds",
-        "<cmd>Trouble lsp_document_symbols toggle focus=true win.position=right<cr>",
+        "<cmd>Trouble symbols toggle focus=true win.type=float<cr>",
         mode = "n",
         desc = "See symbols (Trouble)",
       },
