@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+autoload -Uz compinit && compinit
+
 # Vars
 export EDITOR="nvim"
 
@@ -11,6 +13,9 @@ export PYTHON_EXECUTABLE=$(which python3)
 HISTFILE="$HOME/.histfile"
 HISTSIZE=1000
 SAVEHIST=1000
+
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
 
 # Alias
 alias py='python3'
@@ -33,7 +38,7 @@ for f in "$ZSH/autoload/"*; do
 done
 
 if [[ -d "$ZSH/zsh-syntax-highlighting" ]]; then
-  source "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  # source "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 else
   echo "Warning: the zsh-syntax-highlighting plugin is not installed."
 fi
@@ -57,5 +62,3 @@ fi
 DOTFILES_ROOT="$HOME/.dotfiles"
 # This loads rbenv and friends
 [[ -s "$DOTFILES_ROOT/shell/tools" ]] && source "$DOTFILES_ROOT/shell/tools"
-
-autoload -Uz compinit && compinit
