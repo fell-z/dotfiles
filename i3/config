@@ -48,6 +48,12 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
+## anki related
+
+bindsym Ctrl+Shift+s exec "ames -s"
+
+##
+
 # start a terminal
 bindsym $mod+Return exec alacritty
 
