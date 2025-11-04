@@ -50,10 +50,10 @@ local nvim_cmp_config = function()
     },
 
     mapping = {
-      ["<M-´>"] = cmp.mapping(cmp.mapping.scroll_docs(-3), { "i" }),
-      ["<M-~>"] = cmp.mapping(cmp.mapping.scroll_docs(3), { "i" }),
+      ["<M-[>"] = cmp.mapping(cmp.mapping.scroll_docs(-3), { "i" }),
+      ["<M-]>"] = cmp.mapping(cmp.mapping.scroll_docs(3), { "i" }),
       ["<M-;>"] = cmp.mapping { i = cmp.mapping.abort() },
-      ["<M-]>"] = cmp.mapping.confirm { select = true },
+      ["<M-:>"] = cmp.mapping.confirm { select = true }, -- Shift + Alt + ;
       ["<M-.>"] = function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -83,6 +83,7 @@ end
 return {
   {
     "hrsh7th/nvim-cmp",
+    enabled = true,
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",

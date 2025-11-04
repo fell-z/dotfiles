@@ -7,12 +7,12 @@ return {
   opts = {
     keymap = {
       preset = "default",
-      ["<C-,>"] = { "select_prev", "snippet_backward", "fallback" },
-      ["<C-.>"] = { "select_next", "snippet_forward", "fallback" },
-      ["<C-[>"] = { "scroll_documentation_up", "fallback" },
-      ["<C-]>"] = { "scroll_documentation_down", "fallback" },
-      ["<C-;>"] = { "cancel" },
-      ["<C-/>"] = { "select_and_accept" },
+      ["<M-,>"] = { "select_prev", "snippet_backward", "fallback" },
+      ["<M-.>"] = { "select_next", "snippet_forward", "fallback" },
+      ["<M-[>"] = { "scroll_documentation_up", "fallback" },
+      ["<M-]>"] = { "scroll_documentation_down", "fallback" },
+      ["<M-;>"] = { "cancel" },
+      ["<M-\\>"] = { "select_and_accept" },
     },
     appearance = {
       use_nvim_cmp_as_default = true,
