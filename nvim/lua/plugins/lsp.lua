@@ -3,19 +3,20 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        arduino_language_server = {},
+        arduino_language_server = {
+          cmd = {
+            "arduino-language-server",
+            "-clangd", "clangd",
+            "-cli", "arduino-cli",
+            "-cli-config", vim.fn.expand("~") .. "/.arduino15/arduino-cli.yaml",
+            "-fqbn", "arduino:avr:uno"
+          }
+        },
         basedpyright = {},
         bashls = {},
         csharp_ls = {},
         cssls = {},
-        clangd = {
-          cmd = {
-            "clangd",
-            "--clang-tidy",
-            "--completion-style=detailed",
-            "--function-arg-placeholders=1",
-          },
-        },
+        clangd = {},
         emmet_language_server = {},
         html = {},
         jdtls = {},
@@ -55,18 +56,18 @@ return {
       },
     },
     config = function(_, opts)
-      require("mason").setup()
-      require("mason-lspconfig").setup()
+      local lsp = require("lspconfig")
 
       -- Set the gutter diagnostics icons
       vim.diagnostic.config({
+        virtual_text = true,
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = " ",
             [vim.diagnostic.severity.WARN] = " ",
             [vim.diagnostic.severity.HINT] = " ",
             [vim.diagnostic.severity.INFO] = " ",
-          }
+          },
         }
       })
 
