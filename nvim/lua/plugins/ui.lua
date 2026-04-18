@@ -1,13 +1,24 @@
 return {
   {
-    "folke/tokyonight.nvim",
-    lazy = false,
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     init = function()
       local themes = vim.g.themes or {}
 
+      table.insert(themes, "catppuccin-latte")
+      table.insert(themes, "catppuccin-macchiato")
+      table.insert(themes, "catppuccin-frappe")
+
+      vim.g.themes = themes
+    end,
+  },
+  {
+    "folke/tokyonight.nvim",
+    init = function()
+      local themes = vim.g.themes or {}
+
       table.insert(themes, "tokyonight-storm")
-      table.insert(themes, "tokyonight-day")
 
       vim.g.themes = themes
     end,
@@ -20,52 +31,10 @@ return {
     end,
   },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = true,
-    init = function()
-      local themes = vim.g.themes or {}
-
-      table.insert(themes, "catppuccin-latte")
-      table.insert(themes, "catppuccin-macchiato")
-      table.insert(themes, "catppuccin-frappe")
-
-      vim.g.themes = themes
-    end,
-  },
-  {
-    "neanias/everforest-nvim",
-    version = false,
-    lazy = true,
-    init = function()
-      local themes = vim.g.themes or {}
-
-      table.insert(themes, "everforest")
-
-      vim.g.themes = themes
-    end,
-  },
-  {
-    "ellisonleao/gruvbox.nvim",
-    opts = {
-      bold = false,
-      contrast = "soft",
-    },
-    lazy = true,
-    init = function()
-      local themes = vim.g.themes or {}
-
-      table.insert(themes, "gruvbox")
-
-      vim.g.themes = themes
-    end,
-  },
-  {
     "zenbones-theme/zenbones.nvim",
     dependencies = {
       "rktjmp/lush.nvim",
     },
-    lazy = true,
     init = function()
       local themes = vim.g.themes or {}
 
@@ -73,6 +42,21 @@ return {
       table.insert(themes, "zenbones")
 
       vim.g.themes = themes
+    end,
+  },
+  {
+    "navarasu/onedark.nvim",
+    init = function()
+      local themes = vim.g.themes or {}
+
+      table.insert(themes, "onedark")
+
+      vim.g.themes = themes
+    end,
+    config = function()
+      require("onedark").setup {
+        style = "warm",
+      }
     end,
   },
 
