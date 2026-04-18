@@ -96,6 +96,8 @@ return {
         "garymjr/nvim-snippets",
         opts = {
           friendly_snippets = true,
+          ignored_filetypes = { "ps1" },
+          extended_filetypes = { ["eruby.html"] = { "eruby" } }
         },
         dependencies = { "rafamadriz/friendly-snippets" },
       },

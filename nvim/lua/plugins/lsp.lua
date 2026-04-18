@@ -17,7 +17,11 @@ return {
         csharp_ls = {},
         cssls = {},
         clangd = {},
+        denols = {},
         emmet_language_server = {},
+        herb_ls = {
+          filetypes = { "html", "eruby", "eruby.html" }
+        },
         html = {},
         jdtls = {},
         lua_ls = {
@@ -33,7 +37,6 @@ return {
           },
         },
         marksman = {},
-        pyre = {},
         rust_analyzer = {},
         sqls = {},
         solargraph = {
@@ -52,7 +55,6 @@ return {
             },
           },
         },
-        vtsls = {},
       },
     },
     config = function(_, opts)

@@ -58,11 +58,13 @@ local config = {
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     lazy = false,
     build = ":TSUpdate",
     dependencies = {
       {
         "windwp/nvim-ts-autotag",
+        lazy = false,
         config = function()
           require("nvim-ts-autotag").setup {
             per_filetype = {

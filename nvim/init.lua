@@ -30,5 +30,4 @@ require("options")
 require("keymaps")
 require("autocmds")
 
--- vim.cmd("colorscheme tokyonight-storm")
-vim.cmd("colorscheme zenbones")
+vim.cmd("colorscheme catppuccin-frappe")

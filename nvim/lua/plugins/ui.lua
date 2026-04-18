@@ -28,6 +28,7 @@ return {
 
       table.insert(themes, "catppuccin-latte")
       table.insert(themes, "catppuccin-macchiato")
+      table.insert(themes, "catppuccin-frappe")
 
       vim.g.themes = themes
     end,
