@@ -26,10 +26,10 @@ return {
     opts = {
       events = { "BufWritePost", "BufReadPost", "InsertLeave", "TextChanged" },
       linters_by_ft = {
-        -- css = { "stylelint" },
-        html = { "htmlhint" },
+        html = { "biomejs" },
+        css = { "biomejs" },
         javascript = { "biomejs" },
-        -- javascript = { "eslint_d" },
+        typescript = { "biomejs" },
         markdown = { "markdownlint" },
         python = { "ruff" },
         ruby = { "rubocop" },
@@ -41,8 +41,8 @@ return {
 
       local debounce = function(ms, fn)
         local timer = vim.uv.new_timer()
-        return function()
-          local argv = {}
+        return function(...)
+          local argv = { ... }
           timer:start(ms, 0, function()
             timer:stop()
             vim.schedule_wrap(fn)(unpack(argv))
@@ -54,7 +54,9 @@ return {
 
       vim.api.nvim_create_autocmd(opts.events, {
         group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
-        callback = debounce(100, lint.try_lint),
+        callback = debounce(100, function()
+          lint.try_lint()
+        end),
       })
     end,
   },
@@ -63,8 +65,6 @@ return {
     "stevearc/conform.nvim",
     event = "VeryLazy",
     config = function()
-      local web_fmts = { "prettierd", "prettier", stop_after_first = true }
-
       require("conform").formatters = {
         ["clang-format"] = {
           prepend_args = function(self, ctx)
@@ -78,6 +78,8 @@ return {
           end,
         },
       }
+
+      local web_fmts = { "biome", "biome-organize-imports" }
 
       require("conform").setup {
         formatters_by_ft = {
@@ -145,7 +147,7 @@ return {
   {
     "brenoprata10/nvim-highlight-colors",
     ft = { "css", "less", "sass", "scss", "html", "javascriptreact", "typescriptreact" },
-    opts = {},
+    opts = { render = "virtual" },
   },
 
   {
@@ -172,21 +174,5 @@ return {
         desc = "Emmet: Wrap with abbreviation",
       },
     },
-  },
-
-  {
-    "windwp/nvim-autopairs",
-    config = function()
-      local npairs = require("nvim-autopairs")
-
-      npairs.setup { check_ts = true }
-
-      local has_cmp, cmp = pcall(require, "cmp")
-      if not has_cmp then
-        return
-      end
-
-      cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
-    end,
   },
 }

@@ -2,7 +2,7 @@ return {
   {
     "nvim-mini/mini.files",
     version = false,
-    event = "VeryLazy",
+    lazy = false,
     opts = {},
     keys = {
       {
@@ -51,5 +51,16 @@ return {
         return package.loaded["nvim-web-devicons"]
       end
     end,
+  },
+
+  {
+    "nvim-mini/mini.pairs",
+    version = false,
+    opts = {
+      mappings = {
+        -- Insert space around inside bracket pairs when space is pressed
+        [' '] = { action = "open", pair = "  ", neigh_pattern = "[%(%[{][%)%]}]" }
+      }
+    }
   },
 }
